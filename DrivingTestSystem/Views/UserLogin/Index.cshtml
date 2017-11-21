@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "登录";
+    Layout = null;
+}
+@using DrivingTestSystem.Models.User
+@{
+    User u = (User)Session["user"];
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>登录</title>
+    <script src="~/Resources/js/jquery-1.9.1.js"></script>
+    <script src="~/Resources/js/bootstrap.min.js"></script>
+    <script src="~/Resources/js/jquery.placeholder.min.js"></script>
+    <script src="~/Resources/js/jquery.waypoints.min.js"></script>
+    <script src="~/Resources/js/main.js"></script>
+    <script src="~/Resources/js/JQuery.md5.js"></script>
+    <script src="~/Resources/js/userLogin.js"></script>
+    <link rel="stylesheet" href="~/Resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Resources/css/animate.css">
+    <link rel="stylesheet" href="~/Resources/css/style.css">
+</head>
+<body class="style-2">
+    <nav class="navbar navbar-default" role="navigation" id="top_bar" style="margin-top: 15px; color: slategrey;">
+        <div class="container">
+            <div class="navbar-header" style="float: left;">
+                <button type="button" onclick="OnClick();" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#">
+                    <img src="#" id="top_img">
+                </a>
+            </div>
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-2" style="height: 1px; padding-bottom: 10px">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">日常练习<strong class="caret"></strong></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="~/Practice/SubjectOnePage/">科目一</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="~/Practice/SubjectFourPage/">科目四</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">模拟考试<strong class="caret"></strong></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="~/Exam/SubjectOnePage/">科目一</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="~/Exam/SubjectFourPage/">科目四</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </nav>
+    <div class="container" style="margin-top: 25px">
+        <div class="row clearfix">
+            <div class="col-md-4">
+                @if (Session["User"] == null)
+                {
+                    <!-- Start Sign In Form -->
+                    <form action="#" class="fh5co-form animate-box" data-animate-effect="fadeInLeft">
+                        <h2>登录</h2>
+                        <p id="error_info" style="color: red; text-align: center">@ViewBag.error</p>
+                        <div class="form-group">
+                            <label for="username" class="sr-only">用户名</label>
+                            <input type="text" class="form-control" name="user_account" id="user_account" placeholder="用户名" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="sr-only">密码</label>
+                            <input type="password" class="form-control" name="user_password" id="user_password" placeholder="密码" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input class="form-control" placeholder="验证码" name="ValidateCode" id="ValidateCode" type="text" style="width: 200px;">
+                                    </td>
+                                    <td>
+                                        <a onclick="refreshCode()">
+                                            <img id="codeImg" src="@Url.Content("~/VerifyCode/")" style="border:solid 1px;width:110px;height:33px;"/>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <p>还没注册? <a href="sign-up2.html">现在注册</a> | <a href="forgot2.html">忘记密码 ?</a></p>
+                        </div>
+                        <div class="form-group">
+                            <input type="button" value="登录" class="btn btn-primary" onclick="login();">
+                        </div>
+                    </form>
+                    <!-- END Sign In Form -->
+                }
+                else
+                {
+                    <!--PersonalCenter-->
+                    <form action="#" class="fh5co-form animate-box" data-animate-effect="fadeInLeft">
+                        <h2>个人中心</h2>
+                        <div class="form-group">
+                            <label>用户名：@u.user_account</label>
+                        </div>
+                        <div class="form-group">
+                            <label>照片：</label>
+                            <img src="@u.user_img" class="user-img" style="max-width: 150px; max-height: 150px; margin-right: 20px; margin-left: 40px; margin-bottom: 0; display: inline-block; box-sizing: border-box; left: 15%;">
+                        </div>
+                        <div class="form-group">
+                            <a href="@Url.Content("~/UserLogin/Logout/")">
+                                <input type="button" value="登出" class="btn btn-primary"></a>
+                        </div>
+                    </form>
+                    <!--End PersonalCenter-->
+                }
+            </div>
+        </div>
+        <div class="row" style="padding-top: 60px; clear: both;">
+            <div class="col-md-12 text-center">
+                <p><small>Copyright &copy;xxxx版权所有.</small></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    function out() {
+        if (window.event.toElement.id != "menu" && window.event.toElement.id != "link")
+            menu.style.visibility = "hidden";
+    }
+
+    function out1() {
+        if (window.event.toElement.id != "menu1" && window.event.toElement.id != "link")
+            menu1.style.visibility = "hidden";
+    }
+    var i = 0;
+    function OnClick() {
+        if (i % 2 == 0) {
+            $('.collapse').collapse('show');
+            i++;
+        }
+        else {
+            $('.collapse').collapse('hide');
+            i++;
+        }
+    }
+</script>
+
