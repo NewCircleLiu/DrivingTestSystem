@@ -143,8 +143,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Subject.mdf" />
+    <Content Include="App_Data\Subject_log.ldf">
+      <DependentUpon>Subject.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\User.mdf" />
+    <Content Include="App_Data\User_log.ldf">
+      <DependentUpon>User.mdf</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Resources\css\style.css.map" />
+    <Content Include="Resources\css\video-js.css" />
     <Content Include="Resources\css\willesPlay.css" />
     <Content Include="Resources\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Resources\fonts\glyphicons-halflings-regular.ttf" />
@@ -168,6 +177,9 @@
     <Content Include="Resources\font\icomoon.svg" />
     <Content Include="Resources\img\bg.jpg" />
     <Content Include="Resources\img\bg_3.jpg" />
+    <Content Include="Resources\js\bootstrap-modal.js" />
+    <Content Include="Resources\js\collapse.js" />
+    <Content Include="Resources\js\video.min.js" />
     <Content Include="UploadFiles\img\s4\4.jpg" />
     <Content Include="UploadFiles\img\s4\6.jpg" />
     <Content Include="UploadFiles\img\user\lxy.jpg" />
@@ -196,7 +208,6 @@
     <Content Include="Resources\js\modernizr-2.6.2.min.js" />
     <Content Include="Resources\js\respond.min.js" />
     <Content Include="Resources\js\userLogin.js" />
-    <Content Include="Resources\js\willesPlay.js" />
     <Content Include="UploadFiles\video\1.mp4" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -211,7 +222,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="UploadFiles\content\" />
     <Folder Include="UploadFiles\img\s1\" />
     <Folder Include="UploadFiles\trick\" />

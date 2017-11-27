@@ -45,6 +45,19 @@ namespace DrivingTestSystem.Controllers
         public ActionResult Index()
         {
             return View();
+        
+        }
+        [HttpPost]
+        public ActionResult setLan(string lan) //设置新的的语言
+        {
+            Session["language"] = lan;
+            return Content(lan);
+        }
+        [HttpPost]
+        public ActionResult getLan()  //获得当前的语言
+        {
+            string lan = (string)Session["language"];
+            return Content(lan);
         }
         public ActionResult SubjectOnePage()
         {
@@ -55,14 +68,15 @@ namespace DrivingTestSystem.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult FourPuzzle(string ctype,string language="ch")
+        public ActionResult FourPuzzle(string ctype)
         {
-            Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype == ctype && s.subject_which=="4").ToArray();
+            string lan = (string)Session["language"];
+            Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype == ctype && s.subject_class == "4").ToArray();
             Subject[] sArray = getRandomList(sOld);
             if (Session["User"] == null)
             {
                 ViewBag.len = sArray.Length > 4 ? 4 : sArray.Length; //如果是游客，最多给四个题
-                ViewBag.language = language;
+                ViewBag.language = lan;
                 ViewBag.nowIndex = 0;
                 return View(sArray);
             }
@@ -70,7 +84,7 @@ namespace DrivingTestSystem.Controllers
             {
                 ViewBag.len = sArray.Length;
                 ViewBag.nowIndex = 0;
-                ViewBag.language = language;
+                ViewBag.language = lan;
                 return View(sArray);
             }
         }

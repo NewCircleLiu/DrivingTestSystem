@@ -16,6 +16,7 @@ namespace DrivingTestSystem.Controllers
 
         public ActionResult Index()
         {
+            //Session["language"] = "ch";
             return View();
         }
         public ActionResult Logout()
@@ -23,6 +24,18 @@ namespace DrivingTestSystem.Controllers
             FormsAuthentication.SignOut();
             Session.Clear();
             return RedirectToAction("Index", "UserLogin");
+        }
+        [HttpPost]
+        public ActionResult setLan(string lan) //设置新的的语言
+        {
+            Session["language"] = lan;
+            return Content(lan);
+        }
+        [HttpPost]
+        public ActionResult getLan()  //获得当前的语言
+        { 
+            string lan=(string)Session["language"];
+            return Content(lan);
         }
         public ActionResult CheckUser(string account, string password, string verifycode)
         {

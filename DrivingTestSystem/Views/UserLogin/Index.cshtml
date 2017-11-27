@@ -38,30 +38,34 @@
                 </a>
             </div>
             <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-2" style="height: 1px; padding-bottom: 10px">
+                <ul class="nav navbar-nav navbar-left">
+                    <li onclick="changeToCh()" style="padding: 15px; padding-right: 0px; cursor: pointer">汉语|</li>
+                    <li onclick="changeToTibetan()" style="padding: 15px; padding-left: 0px; cursor: pointer">藏语</li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">日常练习<strong class="caret"></strong></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #ffffff" id="daily">日常练习<strong class="caret"></strong></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="~/Practice/SubjectOnePage/">科目一</a>
+                                <a href="~/Practice/SubjectOnePage/" id="daily_one">科目一</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="~/Practice/SubjectFourPage/">科目四</a>
+                                <a href="~/Practice/SubjectFourPage/" id="daily_four">科目四</a>
                             </li>
                         </ul>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">模拟考试<strong class="caret"></strong></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #ffffff" id="exam">模拟考试<strong class="caret"></strong></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="~/Exam/SubjectOnePage/">科目一</a>
+                                <a href="~/Exam/SubjectOnePage/" id="exam_one">科目一</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="~/Exam/SubjectFourPage/">科目四</a>
+                                <a href="~/Exam/SubjectFourPage/" id="exam_four">科目四</a>
                             </li>
                         </ul>
                     </li>
@@ -77,14 +81,14 @@
                 {
                     <!-- Start Sign In Form -->
                     <form action="#" class="fh5co-form animate-box" data-animate-effect="fadeInLeft">
-                        <h2>登录</h2>
+                        <h2 id="login_label">登录</h2>
                         <p id="error_info" style="color: red; text-align: center">@ViewBag.error</p>
                         <div class="form-group">
-                            <label for="username" class="sr-only">用户名</label>
+                            <label for="username" class="sr-only" id="user_name_label">用户名</label>
                             <input type="text" class="form-control" name="user_account" id="user_account" placeholder="用户名" autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="password" class="sr-only">密码</label>
+                            <label for="password" class="sr-only" id="user_pass_label">密码</label>
                             <input type="password" class="form-control" name="user_password" id="user_password" placeholder="密码" autocomplete="off">
                         </div>
                         <div class="form-group">
@@ -102,10 +106,10 @@
                             </table>
                         </div>
                         <div class="form-group">
-                            <p>还没注册? <a href="sign-up2.html">现在注册</a> | <a href="forgot2.html">忘记密码 ?</a></p>
+                            <p id="isRegistered">还没注册? <a href="#" id="RegisterNow">现在注册</a> | <a href="#" id="ForgetPass">忘记密码 ?</a></p>
                         </div>
                         <div class="form-group">
-                            <input type="button" value="登录" class="btn btn-primary" onclick="login();">
+                            <input type="button" id="login_button" value="登录" class="btn btn-primary" onclick="login();">
                         </div>
                     </form>
                     <!-- END Sign In Form -->
@@ -114,17 +118,17 @@
                 {
                     <!--PersonalCenter-->
                     <form action="#" class="fh5co-form animate-box" data-animate-effect="fadeInLeft">
-                        <h2>个人中心</h2>
+                        <h2 id="personal_center">个人中心</h2>
                         <div class="form-group">
-                            <label>用户名：@u.user_account</label>
+                            <label>@u.user_account</label>
                         </div>
                         <div class="form-group">
-                            <label>照片：</label>
+                            <label id="photo">照片：</label>
                             <img src="@u.user_img" class="user-img" style="max-width: 150px; max-height: 150px; margin-right: 20px; margin-left: 40px; margin-bottom: 0; display: inline-block; box-sizing: border-box; left: 15%;">
                         </div>
                         <div class="form-group">
                             <a href="@Url.Content("~/UserLogin/Logout/")">
-                                <input type="button" value="登出" class="btn btn-primary"></a>
+                                <input id="logout_button" type="button" value="登出" class="btn btn-primary"></a>
                         </div>
                     </form>
                     <!--End PersonalCenter-->
@@ -141,6 +145,82 @@
 </body>
 </html>
 <script type="text/javascript">
+    function Ch() {
+        $("#logout_button").attr("value","登出");
+        $("#photo").text("照片");
+        $("#personal_center").text("个人中心");
+        $("#login_button").attr("value", "登入");
+        $("#isRegistered").text("还没注册?");
+        $("#RegisterNow").text("现在注册");
+        $("#ForgetPass").text("忘记密码?");
+        $("#ValidateCode").attr("placeholder", "验证码");
+        $("#user_password").attr("placeholder", "密码");
+        $("#user_pass_label").text("密码");
+        $("#user_account").attr("placeholder", "用户名");
+        $("#user_name_label").text("用户名");
+        $("#login_label").text("登录");
+        $("#exam_four").text("科目四");
+        $("#exam_one").text("科目一");
+        $("#exam").text("模拟考试");
+        $("#daily_one").text("科目一");
+        $("#daily_four").text("科目四");
+        $("#daily").text("日常练习");
+    }
+    function tibetan() {
+        $("#logout_button").attr("value", "logout"); //藏语的登出
+        $("#photo").text("photo");
+        $("#personal_center").text("personal_center");
+        $("#login_button").attr("value","login");
+        $("#isRegistered").text("isRegistered?");
+        $("#RegisterNow").text("RegisterNow");
+        $("#ForgetPass").text("ForgetPass?");
+        $("#ValidateCode").attr("placeholder", "ValidateCode");
+        $("#user_password").attr("placeholder", "Password");
+        $("#user_pass_label").text("Password");
+        $("#user_account").attr("placeholder", "Account");
+        $("#user_name_label").text("Account");
+        $("#login_label").text("Login");
+        $("#exam_four").text("Four");
+        $("#exam_one").text("One");
+        $("#exam").text("Exam");
+        $("#daily_one").text("One");
+        $("#daily_four").text("Four");
+        $("#daily").text("Practice");
+    }
+    function changeToCh() {
+        jQuery.post(
+       "/UserLogin/setLan/",
+       { "lan": "ch" },
+       function (data) {
+           location.href = "/UserLogin/Index/";
+       }
+       );
+    }
+    function changeToTibetan() {
+        jQuery.post(
+            "/UserLogin/setLan/",
+            { "lan": "tibetan" },
+            function (data) {
+                location.href = "/UserLogin/Index/";
+            }
+        );
+    }
+    $(document).ready(function () {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/UserLogin/getLan/",
+            data: {},
+            success: function (data) {
+                if (data != "ch") {
+                    tibetan();
+                }
+                else {
+                    Ch();
+                }
+            }
+        });
+    });
     function out() {
         if (window.event.toElement.id != "menu" && window.event.toElement.id != "link")
             menu.style.visibility = "hidden";

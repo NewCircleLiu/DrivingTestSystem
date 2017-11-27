@@ -47,6 +47,18 @@ namespace DrivingTestSystem.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult setLan(string lan) //设置新的的语言
+        {
+            Session["language"] = lan;
+            return Content(lan);
+        }
+        [HttpPost]
+        public ActionResult getLan()  //获得当前的语言
+        {
+            string lan = (string)Session["language"];
+            return Content(lan);
+        }
         [UserAuthorize]
         public ActionResult SubjectOnePage()
         {
@@ -60,7 +72,7 @@ namespace DrivingTestSystem.Controllers
         [HttpGet]
         public ActionResult FourPuzzle(string ctype, string language = "ch")
         {
-            Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype == ctype && s.subject_which == "4").ToArray();
+            Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype == ctype && s.subject_class == "4").ToArray();
             Subject[] sArray = getRandomList(sOld);
             ViewBag.len = sArray.Length > 100 ? 100 :sArray.Length;
             ViewBag.nowIndex = 0;

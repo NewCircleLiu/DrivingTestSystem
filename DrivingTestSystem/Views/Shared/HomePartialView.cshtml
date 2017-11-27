@@ -1,45 +1,104 @@
-﻿    <nav class="navbar navbar-default" role="navigation" id="top_bar" style="background: #393D49; max-height: 60px">
-        <div class="container">
-            <div class="navbar-header" style="float: left;">
-                <button type="button" onclick="OnClick();" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="#">
-                    <img src="~/Resources/img/logo.png" id="top_img">
-                </a>
-            </div>
-            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-2" style="height: 1px; padding-bottom: 5px">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding: 0; color: whitesmoke; margin-bottom: 15px; padding-right: 30px;font-size: 16px;">日常练习<strong class="caret"></strong></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="~/Student/ModifyPassword">科目一</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="~/Student/Logout/">科目四</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding: 0; color: whitesmoke;font-size: 16px;">模拟考试<strong class="caret"></strong></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="~/Student/ModifyPassword">科目一</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="~/Student/Logout/">科目四</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <a href="javascript:;" class="layui-btn layui-btn-normal btn-close layui-btn-radius" style="position: absolute; right: 5%; top: 15%;">返回首页</a>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
+﻿<script src="~/Resources/js/collapse.js"></script>
+<nav class="navbar navbar-default" role="navigation" id="top_bar" style="background: #393D49; max-height: 60px">
+    <div class="container">
+        <div class="navbar-header" style="float: left;">
+            <button type="button" onclick="OnClick();" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="~/UserLogin/Index/">
+                <img src="~/Resources/img/logo.png" id="top_img">
+            </a>
         </div>
-    </nav>
+        <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-2" style="height: 1px; padding-bottom: 5px">
+            <ul class="nav navbar-nav navbar-left">
+                <li onclick="changeToCh()" style="padding: 0; color: whitesmoke; margin-bottom: 15px; padding-right: 5px; font-size: 16px; cursor: pointer;">汉语|</li>
+                <li onclick="changeToTibetan()" style="padding: 0; color: whitesmoke; margin-bottom: 15px; padding-right: 30px; font-size: 16px; cursor: pointer;">藏语</li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding: 0; color: whitesmoke; margin-bottom: 15px; padding-right: 30px; font-size: 16px;" id="daily">日常练习<strong class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="~/Practice/OneSubject/" id="daily_one">科目一</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="~/Practice/FourSubject/" id="daily_four">科目四</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding: 0; color: whitesmoke; font-size: 16px;" id="exam">模拟考试<strong class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="~/Exam/OneSubject/" id="exam_one">科目一</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="~/Exam/FourSubject/" id="exam_four">科目四</a>
+                        </li>
+                    </ul>
+                </li>
+                <a href="~/UserLogin/Index/" class="layui-btn layui-btn-normal btn-close layui-btn-radius" style="position: absolute; right: 5%; top: 15%;" id="goBack">返回首页</a>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</nav>
+<script>
+    function Ch() {
+        $("#exam_four").text("科目四");
+        $("#exam_one").text("科目一");
+        $("#exam").text("模拟考试");
+        $("#daily_one").text("科目一");
+        $("#daily_four").text("科目四");
+        $("#daily").text("日常练习");
+        $("#goBack").text("回到首页");
+    }
+    function tibetan() {
+        $("#exam_four").text("Four");
+        $("#exam_one").text("One");
+        $("#exam").text("Exam");
+        $("#daily_one").text("One");
+        $("#daily_four").text("Four");
+        $("#daily").text("Practice");
+        $("#goBack").text("goBack");
+    }
+    function changeToCh() {
+        jQuery.post(
+        "/UserLogin/setLan/",
+        { "lan": "ch" },
+        function (data) {
+            window.location.reload();
+        }
+        );
+    }
+    function changeToTibetan() {
+        jQuery.post(
+            "/UserLogin/setLan/",
+            { "lan": "tibetan" },
+            function (data) {
+                window.location.reload();
+            }
+        );
+    }
+    $(document).ready(function () {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/UserLogin/getLan/",
+            data: {},
+            success: function (data) {
+                if (data != "ch") {
+                    tibetan();
+                }
+                else {
+                    Ch();
+                }
+            }
+        });
+    });
+</script>

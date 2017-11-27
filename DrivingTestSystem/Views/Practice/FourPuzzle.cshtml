@@ -47,19 +47,26 @@
 }
 <script>
     var contents = [];
+    var ti_contents = [];
     var As = [];
+    var ti_As = [];
     var Bs = [];
+    var ti_Bs = [];
     var Cs = [];
+    var ti_Cs = [];
     var Ds = [];
+    var ti_Ds = [];
     var ids = [];
     var imgs = [];
     var video = [];
     var s_c = [];
     var s_t = [];
     var isCorrect = [];
+    var answer = [];
 </script>
-<script src="~/Resources/js/willesPlay.js"></script>
-<link href="~/Resources/css/willesPlay.css" rel="stylesheet"/>
+<link href="~/Resources/css/video-js.css" rel="stylesheet"/>
+<script src="~/Resources/js/video.min.js"></script>
+
 <section style="display:flex;margin-left: 0px;margin-right:0px;width:100%">
     <div class="left-main">
         <fieldset class="layui-elem-field" style="margin-bottom:40px">
@@ -73,12 +80,12 @@
                 <p>用&nbsp;&nbsp;&nbsp;&nbsp; 户: <span class="user">@ViewBag.account</span></p>
                 <p>练习题数: <span class="user-num">@ViewBag.len</span></p>
                 <p>考试科目: <span class="user-category">科目4</span></p>
-                <p>考试车型: <span class="user-car"></span></p>
+               <!-- <p>考试车型: <span class="user-car"></span></p>-->
             </div>
         </fieldset>
     </div>
     <div class="right-main">
-        <fieldset class="layui-elem-field" style="min-height: 340px;position: relative;margin-left:10px;max-width:100%">
+        <fieldset class="layui-elem-field" style="min-height: 430px;position: relative;margin-left:10px;max-width:100%">
             <legend>考试题目</legend>
             <div class="layui-field-box" style="text-align:left">
                 <p class="question" id="question">1、@Model[0].subject_content？</p>
@@ -88,9 +95,9 @@
                 <p class="answer-four" id="answer-four">D @Model[0].subject_D</p>
                 <p class="answer-judge" style="width: 50%; display: none; text-align:center" id="ShowJudge"></p>
                 <img src="@Model[0].subject_img" class="que-img pc-que-img" id="subject_img">
-                <div style="position: absolute;bottom: 2%;width: 100%;">
+                <div style="position: absolute;bottom: 2%;width: 100%;margin-bottom:10px">
                     <div style="float: left;" class="answer-test">
-                        <button class="layui-btn layui-btn-normal play-audio" id="playcontent"><i class="layui-icon" style="font-size: 20px;"></i>音频</button>
+                        <button class="layui-btn layui-btn-normal play-audio" id="playcontent"><i class="glyphicon glyphicon-volume-up" style="font-size: 10px;"></i>音频</button>
                         <audio src="" class="answer-audio" style="display: none;" id="subject_sound_trick">
                             您的浏览器不支持 audio 标签。
                         </audio>
@@ -98,8 +105,8 @@
                             您的浏览器不支持 audio 标签。
                         </audio>
                         <!--<audio src="/Public/video/right.wav" id="turename" style="display: none;"></audio>-->
-                        <button class="layui-btn layui-btn-warm detailsbtn" data-hide="yes" id="playtrick"><i class="layui-icon" style="font-size: 20px;"></i> 小技巧</button>
-                        <button class="layui-btn layui-btn-warm layer-video" onclick="playvideo()"><i class="layui-icon" style="font-size: 20px;"></i> 播放视频</button>
+                        <button class="layui-btn layui-btn-warm detailsbtn" data-hide="yes" id="playtrick"><i class="glyphicon glyphicon-star" style="font-size: 10px;"></i> 答题技巧</button>
+                        <button data-toggle="modal" data-target="#myModal" class="layui-btn layui-btn-warm layer-video" id="playvideo" ><i class="glyphicon glyphicon-facetime-video" style="font-size: 10px;"></i>播放视频</button>
                     </div>
                     <div style="float: right;margin-right: 5%" id="AnswerButton">
                         <p id="subject_id" style="display:none">@Model[0].subject_id</p>
@@ -113,10 +120,6 @@
             </div>
         </fieldset>
         <div class="right-footer">
-            <fieldset class="layui-elem-field" style="margin-left:10px;">
-                <legend>提示信息</legend>
-                <div class="layui-field-box tip" >单选题，请选择你认为正确的答案！</div>
-            </fieldset>
             <div class="right-footer-btn" style="margin-top:20px" >
                 <button class="layui-btn upper" onclick="toPastPuzzle()">上一题</button>
                 <button class="layui-btn Next" onclick="toNextPuzzle(@ViewBag.len)">下一题</button>
@@ -135,16 +138,22 @@
                 {
                     <script>
                         contents.push("@Model[i].subject_content");
+                        ti_contents.push("@Model[i].subject_content_tibetan");
                         As.push("@Model[i].subject_A");
+                        ti_As.push("@Model[i].subject_A_tibetan");
                         Bs.push("@Model[i].subject_B");
+                        ti_Bs.push("@Model[i].subject_B_tibetan");
                         Cs.push("@Model[i].subject_C");
+                        ti_Cs.push("@Model[i].subject_C_tibetan");
                         Ds.push("@Model[i].subject_D");
+                        ti_Ds.push("@Model[i].subject_D_tibetan");
                         ids.push(@Model[i].subject_id);
                         imgs.push("@Model[i].subject_img");
                         video.push("@Model[i].subject_video");
                         s_c.push("@Model[i].subject_sound_content");
                         s_t.push("@Model[i].subject_sound_trick");
                         isCorrect.push("not");
+                        answer.push("@Model[i].subject_answer");
                     </script>
                         <li id="new(@i)" class="newli newli-btn" onclick="ToANewPuzzle(@i)" style="cursor:pointer">@(i + 1)</li>
                 }
@@ -152,41 +161,43 @@
         </div>
     </fieldset>
 </div>
-<div id="box-video" style="display: none;">
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div id="willesPlay">
-                <div class="playContent">
-                    <video width="100%" height="100%" id="playVideo">
-                        当前浏览器不支持,建议使用谷歌或者QQ浏览器</video>
-                    <div class="playTip glyphicon glyphicon-play"></div>
-                </div>
-                <div class="playControll" style="background-color: #fbfbfb">
-                    <div class="playPause playIcon"></div>
-                    <div class="timebar"> <span class="currentTime">0:00:00</span>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
-                        </div>
-                        <span class="duration">0:00:00</span> </div>
-                    <div class="otherControl"> <span class="volume glyphicon glyphicon-volume-down"></span> <span class="fullScreen glyphicon glyphicon-fullscreen"></span>
-                        <div class="volumeBar" style="display: none;">
-                            <div class="volumewrap">
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 8px;height: 40%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="min-width:740px">
+            <video id="my-video" class="video-js" controls preload="auto" width="740" height="400"  style="width:100%">
+                <source src="@Model[0].subject_video" type="video/mp4" id="video_src">
+                <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                </p>
+            </video>  
         </div>
-    </div>
+	</div>
 </div>
-</div>
-<div id="back" style="background:black;overflow: hidden;position: absolute;top: 0;opacity: 0.4"></div>
+
 <script>
+    var lan;
+    function Ch_p() {
+        $(".user-category").text("科目四");
+    }
+    function tibetan_p() {
+        $(".user-category").text("Four");
+    }
     $(document).ready(function () {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/UserLogin/getLan/",
+            data: {},
+            success: function (data) {
+                lan = data;
+                if (data != "ch") {
+                    tibetan_p();
+                }
+                else {
+                    Ch_p();
+                }
+            }
+        });
         $("#playcontent").click(function () {
             var audio = document.getElementById("subject_sound_content");
             if (audio.paused) {
@@ -203,65 +214,60 @@
                 audio.pause();
             }
         });
-        $("#back").click(function (event) {
-            /* Act on the event */
-            $("#box-video").hide(1000, function () {
-                $("#back").css({ 'z-index': '1', "display": "none", });
-                $("#willesPlay").css("z-index", "1");
-                // });
-                $("body").css('overflow-y', 'auto');
-                $('video').trigger('pause');
+        $("#playvideo").click(function () {
+            var myPlayer = videojs('my-video');
+            videojs("my-video", {}, function () {
+                window.myPlayer = this;
+                myPlayer.play();
             });
         });
-
+        $('#myModal').on('hidden.bs.modal', function () {
+            myPlayer.pause();
+        });
     });
-    function playvideo() {
-        var nowIndex = jQuery("#subject_index").text();
-        var screenwidth = document.body.clientWidth;
-        var screenHeight = window.screen.availHeight;
-        alert(nowIndex);
-        alert(video[nowIndex]);
-        $("video").attr("src", video[nowIndex]);
-        $("#back").show('slow', function () {
-            $(this).css({
-                "width": screenwidth,
-                "height": screenHeight,
-                "z-index": "9999",
-            });
-            $("body").css("overflow-y", "hidden");
-        });
-        $("#box-video").show(1000, function () {
-            $(this).css("z-index", "200000");
-            $("#willesPlay").css("z-index", "200000");
-        });
-    }
     function show(index) {
         document.getElementById("AnswerButton").style.display = 'none';
         document.getElementById("ShowJudge").style.display = "block";
         document.getElementById("ShowJudge").style.color = 'green';
-        document.getElementById("ShowJudge").innerHTML = "恭喜您，答对啦~";
+        if (lan != "tibetan") {
+            document.getElementById("ShowJudge").innerHTML = "恭喜您，答对啦~";
+        } else {
+            document.getElementById("ShowJudge").innerHTML = "Congralutions~You're right!";
+        }
         document.getElementById("new(" + index.toString() + ")").className = "newli newli-true";
     }
     function hide(index) {
         document.getElementById("AnswerButton").style.display = 'none';
         document.getElementById("ShowJudge").style.display = "block";
         document.getElementById("ShowJudge").style.color = 'red';
-        document.getElementById("ShowJudge").innerHTML = "回答错误,正确答案应为:" + data;
+        if (lan != "tibetan") {
+            document.getElementById("ShowJudge").innerHTML = "回答错误,正确答案应为:" + answer[index];
+        } else {
+            document.getElementById("ShowJudge").innerHTML = "Sorry,you're wrong and the answer is:" + answer[index];
+        }
         document.getElementById("new(" + index.toString() + ")").className = "newli newli-false";
         isCorrect[index] = "no";
     }
     function ToANewPuzzle(index) {
-        document.getElementById("question").innerHTML = (index + 1).toString() + "、" + contents[index];
-        document.getElementById("answer-one").innerHTML = "A " + As[index];
-        document.getElementById("answer-two").innerHTML = "B " + Bs[index];
-        document.getElementById("answer-three").innerHTML = "C " + Cs[index];
-        document.getElementById("answer-four").innerHTML = "D " + Ds[index];
+        if (lan != "tibetan") {
+            document.getElementById("question").innerHTML = (index + 1).toString() + "、" + contents[index];
+            document.getElementById("answer-one").innerHTML = "A " + As[index];
+            document.getElementById("answer-two").innerHTML = "B " + Bs[index];
+            document.getElementById("answer-three").innerHTML = "C " + Cs[index];
+            document.getElementById("answer-four").innerHTML = "D " + Ds[index];
+        } else {
+            document.getElementById("question").innerHTML = (index + 1).toString() + "、" + ti_contents[index];
+            document.getElementById("answer-one").innerHTML = "A " + ti_As[index];
+            document.getElementById("answer-two").innerHTML = "B " + ti_Bs[index];
+            document.getElementById("answer-three").innerHTML = "C " + ti_Cs[index];
+            document.getElementById("answer-four").innerHTML = "D " + ti_Ds[index];
+        }
         document.getElementById("subject_index").innerHTML = index;
         document.getElementById("subject_id").innerHTML = ids[index];
-        //alert(imgs[index]);
         $("#subject_img").attr("src", imgs[index]);
         $("#subject_sound_trick").attr("src", s_t[index]);
         $("#subject_sound_content").attr("src", s_c[index]);
+        $("#video_src").attr("src", video[index]);
         if (isCorrect[index] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";
@@ -279,13 +285,25 @@
         if (nowIndex != 0) {
             nowIndex = nowIndex - 1;
         }
-        document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + contents[nowIndex];
-        document.getElementById("answer-one").innerHTML = "A " + As[nowIndex];
-        document.getElementById("answer-two").innerHTML = "B " + Bs[nowIndex];
-        document.getElementById("answer-three").innerHTML = "C " + Cs[nowIndex];
-        document.getElementById("answer-four").innerHTML = "D " + Ds[nowIndex];
+        if (lan != "tibetan") {
+            document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + contents[nowIndex];
+            document.getElementById("answer-one").innerHTML = "A " + As[nowIndex];
+            document.getElementById("answer-two").innerHTML = "B " + Bs[nowIndex];
+            document.getElementById("answer-three").innerHTML = "C " + Cs[nowIndex];
+            document.getElementById("answer-four").innerHTML = "D " + Ds[nowIndex];
+        } else {
+            document.getElementById("question").innerHTML = (index + 1).toString() + "、" + ti_contents[nowIndex];
+            document.getElementById("answer-one").innerHTML = "A " + ti_As[nowIndex];
+            document.getElementById("answer-two").innerHTML = "B " + ti_Bs[nowIndex];
+            document.getElementById("answer-three").innerHTML = "C " + ti_Cs[nowIndex];
+            document.getElementById("answer-four").innerHTML = "D " + ti_Ds[nowIndex];
+        }
         document.getElementById("subject_index").innerHTML = nowIndex;
         document.getElementById("subject_id").innerHTML = ids[nowIndex];
+        $("#subject_img").attr("src", imgs[nowIndex]);
+        $("#subject_sound_trick").attr("src", s_t[nowIndex]);
+        $("#subject_sound_content").attr("src", s_c[nowIndex]);
+        $("#video_src").attr("src", video[nowIndex]);
         if (isCorrect[nowIndex] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";
@@ -303,13 +321,25 @@
         if (nowIndex != len - 1) {
             nowIndex = nowIndex + 1;
         }
-        document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + contents[nowIndex];
-        document.getElementById("answer-one").innerHTML = "A " + As[nowIndex];
-        document.getElementById("answer-two").innerHTML = "B " + Bs[nowIndex];
-        document.getElementById("answer-three").innerHTML = "C " + Cs[nowIndex];
-        document.getElementById("answer-four").innerHTML = "D " + Ds[nowIndex];
+        if (lan != "tibetan") {
+            document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + contents[nowIndex];
+            document.getElementById("answer-one").innerHTML = "A " + As[nowIndex];
+            document.getElementById("answer-two").innerHTML = "B " + Bs[nowIndex];
+            document.getElementById("answer-three").innerHTML = "C " + Cs[nowIndex];
+            document.getElementById("answer-four").innerHTML = "D " + Ds[nowIndex];
+        } else {
+            document.getElementById("question").innerHTML = (index + 1).toString() + "、" + ti_contents[nowIndex];
+            document.getElementById("answer-one").innerHTML = "A " + ti_As[nowIndex];
+            document.getElementById("answer-two").innerHTML = "B " + ti_Bs[nowIndex];
+            document.getElementById("answer-three").innerHTML = "C " + ti_Cs[nowIndex];
+            document.getElementById("answer-four").innerHTML = "D " + ti_Ds[nowIndex];
+        }
         document.getElementById("subject_index").innerHTML = nowIndex;
         document.getElementById("subject_id").innerHTML = ids[nowIndex];
+        $("#subject_img").attr("src", imgs[nowIndex]);
+        $("#subject_sound_trick").attr("src", s_t[nowIndex]);
+        $("#subject_sound_content").attr("src", s_c[nowIndex]);
+        $("#video_src").attr("src", video[nowIndex]);
         if (isCorrect[nowIndex] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";
