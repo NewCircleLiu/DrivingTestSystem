@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "模拟练习_科目4";
+    ViewBag.Title = "实战考试_科目1";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Html.Partial("HomePartialView")
@@ -121,8 +121,8 @@
         </fieldset>
         <div class="right-footer">
             <div class="right-footer-btn" style="margin-top:20px" >
-                <button class="layui-btn upper" onclick="toPastPuzzle()" id="toPast">上一题</button>
-                <button class="layui-btn Next" onclick="toNextPuzzle(@ViewBag.len)" id="toNext">下一题</button>
+                <button class="layui-btn upper" onclick="toPastPuzzle()">上一题</button>
+                <button class="layui-btn Next" onclick="toNextPuzzle(@ViewBag.len)">下一题</button>
                 <button class="layui-btn layui-btn-warm goover" style="float: right;display:none"><i class="layui-icon" style="font-size: 20px;"></i> 交卷</button>
                 <button class="layui-btn layui-btn-warm Refresh" style="float: right;display: none;" onclick="location.reload()"><i class="layui-icon" style="font-size: 20px;">ဂ</i> 重做</button>
             </div>
@@ -176,12 +176,12 @@
 
 <script>
     var lan;
-    function Ch_p4() {
+    function Ch_e1() {
         $(".user-category").text("科目四");
     }
-    function tibetan_p4() {
+    function tibetan_e1() {
         $(".user-category").text("Four");
-        document.getElementById("question").innerHTML = "1、"+ti_contents[0];
+        document.getElementById("question").innerHTML = "1、" + ti_contents[0];
         document.getElementById("answer-one").innerHTML = "A " + ti_As[0];
         document.getElementById("answer-two").innerHTML = "B " + ti_Bs[0];
         document.getElementById("answer-three").innerHTML = "C " + ti_Cs[0];
@@ -189,6 +189,7 @@
         $("#playcontent").html("<i class='glyphicon glyphicon-volume-up' style='font-size: 10px;'></i>sound");
         $("#playtrick").html("<i class='glyphicon glyphicon-star' style='font-size: 10px;'></i>trick");
         $("#playvideo").html("<i class='glyphicon glyphicon-facetime-video' style='font-size: 10px;'></i>video");
+        $("#handin").html("<i class='glyphicon glyphicon-saved' style='font-size: 20px;'></i> hand&nbsp;in");
     }
     $(document).ready(function () {
         $.ajax({
@@ -199,10 +200,10 @@
             success: function (data) {
                 lan = data;
                 if (data != "ch") {
-                    tibetan_p4();
+                    tibetan_e1();
                 }
                 else {
-                    Ch_p4();
+                    Ch_e1();
                 }
             }
         });

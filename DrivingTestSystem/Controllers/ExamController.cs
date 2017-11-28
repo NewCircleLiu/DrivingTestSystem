@@ -70,6 +70,17 @@ namespace DrivingTestSystem.Controllers
             return View();
         }
         [HttpGet]
+        public ActionResult OnePuzzle(string ctype)
+        {
+            string lan = (string)Session["language"];
+            Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype == ctype && s.subject_class == "1").ToArray();
+            Subject[] sArray = getRandomList(sOld);
+            ViewBag.len = sArray.Length > 100 ? 100 : sArray.Length;
+            ViewBag.nowIndex = 0;
+            ViewBag.language = lan;
+            return View(sArray);
+        }
+        [HttpGet]
         public ActionResult FourPuzzle(string ctype, string language = "ch")
         {
             Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype == ctype && s.subject_class == "4").ToArray();

@@ -10,59 +10,98 @@
     <div class="row" id="fh5co-features">
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Exam/FourPuzzle?ctype=basic&language=ch">
+            <a href="~/Exam/FourPuzzle?ctype=basic">
                 <img src="~/Resources/img/基础篇.png" class="cate-img">
-                <p>基础篇</p>
+                <p id="basic">基础篇</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Exam/FourPuzzle?ctype=driving&language=ch">
+            <a href="~/Exam/FourPuzzle?ctype=driving">
                 <img src="~/Resources/img/驾驶技巧.png" class="cate-img">
-                <p>驾驶技巧</p>
+                <p id="driving">驾驶技巧</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Exam/FourPuzzle?ctype=sign&language=ch">
+            <a href="~/Exam/FourPuzzle?ctype=sign">
                 <img src="~/Resources/img/交通标志.png" class="cate-img">
-                <p>交通标志</p>
+                <p id="sign">交通标志</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Exam/FourPuzzle?ctype=ground&language=ch">
+            <a href="~/Exam/FourPuzzle?ctype=ground">
                 <img src="~/Resources/img/地面标线.png" class="cate-img">
-                <p>地面标线</p>
+                <p id="ground">地面标线</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Exam/FourPuzzle?ctype=signal&language=ch">
+            <a href="~/Exam/FourPuzzle?ctype=signal">
                 <img src="~/Resources/img/交通信号.png" class="cate-img">
-                <p>交通信号</p>
+                <p id="signal">交通信号</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Exam/FourPuzzle?ctype=common1&language=ch">
+            <a href="~/Exam/FourPuzzle?ctype=common1">
                 <img src="~/Resources/img/交通常识1.png" class="cate-img">
-                <p>交通常识(1)</p>
+                <p id="common1">交通常识(1)</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Exam/FourPuzzle?ctype=common2&language=ch">
+            <a href="~/Exam/FourPuzzle?ctype=common2">
                 <img src="~/Resources/img/交通常识2.png" class="cate-img">
-                <p>交通常识(2)</p>
+                <p id="common2">交通常识(2)</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Exam/FourPuzzle?ctype=common3&language=ch">
+            <a href="~/Exam/FourPuzzle?ctype=common3">
                 <img src="~/Resources/img/交通常识3.png" class="cate-img">
-                <p>交通常识(3)</p>
+                <p id="common3">交通常识(3)</p>
             </a>
         </div>
     </div>
 </div>
+<script>
+    function tibetan_es4() {
+        $("#common3").text("common3");
+        $("#common2").text("common2");
+        $("#common1").text("common1");
+        $("#signal").text("signal");
+        $("#ground").text("ground");
+        $("#sign").text("sign");
+        $("#driving").text("driving");
+        $("#basic").text("basic");
+    }
+    function Ch_es4() {
+        $("#common3").text("交通常识(3)");
+        $("#common2").text("交通常识(2)");
+        $("#common1").text("交通常识(1)");
+        $("#signal").text("信号");
+        $("#ground").text("地面标线");
+        $("#sign").text("交通标志");
+        $("#driving").text("驾驶技巧");
+        $("#basic").text("基础篇");
+    }
+    $(document).ready(function () {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/UserLogin/getLan/",
+            data: {},
+            success: function (data) {
+                lan = data;
+                if (data != "ch") {
+                    tibetan_es4();
+                }
+                else {
+                    Ch_es4();
+                }
+            }
+        });
+    });
+</script>

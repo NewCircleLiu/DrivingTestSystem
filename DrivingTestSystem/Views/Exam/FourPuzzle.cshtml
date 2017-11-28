@@ -47,10 +47,15 @@
 }
 <script>
     var contents = [];
+    var ti_contents = [];
     var As = [];
+    var ti_As = [];
     var Bs = [];
+    var ti_Bs = [];
     var Cs = [];
+    var ti_Cs = [];
     var Ds = [];
+    var ti_Ds = [];
     var ids = [];
     var imgs = [];
     var video = [];
@@ -118,7 +123,7 @@
             <div class="right-footer-btn" style="margin-top:20px" >
                 <button class="layui-btn upper" onclick="toPastPuzzle()">上一题</button>
                 <button class="layui-btn Next" onclick="toNextPuzzle(@ViewBag.len)">下一题</button>
-                <button class="layui-btn layui-btn-warm goover" style="float: right" onclick="showYourScore();"><i class="glyphicon glyphicon-saved" style="font-size: 20px;"></i> 交卷</button>
+                <button class="layui-btn layui-btn-warm goover" style="float: right" onclick="showYourScore();" id="handin"><i class="glyphicon glyphicon-saved" style="font-size: 20px;"></i> 交卷</button>
                 <button class="layui-btn layui-btn-warm Refresh" style="float: right;display: none;" onclick="location.reload()"><i class="layui-icon" style="font-size: 20px;">ဂ</i> 重做</button>
             </div>
         </div>
@@ -133,10 +138,15 @@
                 {
                     <script>
                         contents.push("@Model[i].subject_content");
+                        ti_contents.push("@Model[i].subject_content_tibetan");
                         As.push("@Model[i].subject_A");
+                        ti_As.push("@Model[i].subject_A_tibetan");
                         Bs.push("@Model[i].subject_B");
+                        ti_Bs.push("@Model[i].subject_B_tibetan");
                         Cs.push("@Model[i].subject_C");
+                        ti_Cs.push("@Model[i].subject_C_tibetan");
                         Ds.push("@Model[i].subject_D");
+                        ti_Ds.push("@Model[i].subject_D_tibetan");
                         ids.push(@Model[i].subject_id);
                         imgs.push("@Model[i].subject_img");
                         video.push("@Model[i].subject_video");
@@ -147,6 +157,7 @@
                     </script>
                         <li id="new(@i)" class="newli newli-btn" onclick="ToANewPuzzle(@i)" style="cursor:pointer">@(i + 1)</li>
                 }
+
             </ul>
         </div>
     </fieldset>
@@ -169,7 +180,38 @@
 
 
 <script>
+    var lan;
+    function Ch_e4() {
+        $(".user-category").text("科目四");
+    }
+    function tibetan_e4() {
+        $(".user-category").text("Four");
+        document.getElementById("question").innerHTML = "1、" + ti_contents[0];
+        document.getElementById("answer-one").innerHTML = "A " + ti_As[0];
+        document.getElementById("answer-two").innerHTML = "B " + ti_Bs[0];
+        document.getElementById("answer-three").innerHTML = "C " + ti_Cs[0];
+        document.getElementById("answer-four").innerHTML = "D " + ti_Ds[0];
+        $("#playcontent").html("<i class='glyphicon glyphicon-volume-up' style='font-size: 10px;'></i>sound");
+        $("#playtrick").html("<i class='glyphicon glyphicon-star' style='font-size: 10px;'></i>trick");
+        $("#playvideo").html("<i class='glyphicon glyphicon-facetime-video' style='font-size: 10px;'></i>video");
+        $("#handin").html("<i class='glyphicon glyphicon-saved' style='font-size: 20px;'></i> hand&nbsp;in");
+    }
     $(document).ready(function () {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/UserLogin/getLan/",
+            data: {},
+            success: function (data) {
+                lan = data;
+                if (data != "ch") {
+                    tibetan_e4();
+                }
+                else {
+                    Ch_e4();
+                }
+            }
+        });
         $("#playcontent").click(function () {
             var audio = document.getElementById("subject_sound_content");
             if (audio.paused) {
@@ -202,23 +244,39 @@
         document.getElementById("AnswerButton").style.display = 'none';
         document.getElementById("ShowJudge").style.display = "block";
         document.getElementById("ShowJudge").style.color = 'green';
-        document.getElementById("ShowJudge").innerHTML = "恭喜您，答对啦~";
+        if (lan != "tibetan") {
+            document.getElementById("ShowJudge").innerHTML = "恭喜您，答对啦~";
+        } else {
+            document.getElementById("ShowJudge").innerHTML = "Congralutions~You're right!";
+        }
         document.getElementById("new(" + index.toString() + ")").className = "newli newli-true";
     }
     function hide(index) {
         document.getElementById("AnswerButton").style.display = 'none';
         document.getElementById("ShowJudge").style.display = "block";
         document.getElementById("ShowJudge").style.color = 'red';
-        document.getElementById("ShowJudge").innerHTML = "回答错误,正确答案应为:" + answer[index];
+        if (lan != "tibetan") {
+            document.getElementById("ShowJudge").innerHTML = "回答错误,正确答案应为:" + answer[index];
+        } else {
+            document.getElementById("ShowJudge").innerHTML = "Sorry,you're wrong and the answer is:" + answer[index];
+        }
         document.getElementById("new(" + index.toString() + ")").className = "newli newli-false";
         isCorrect[index] = "no";
     }
     function ToANewPuzzle(index) {
-        document.getElementById("question").innerHTML = (index + 1).toString() + "、" + contents[index];
-        document.getElementById("answer-one").innerHTML = "A " + As[index];
-        document.getElementById("answer-two").innerHTML = "B " + Bs[index];
-        document.getElementById("answer-three").innerHTML = "C " + Cs[index];
-        document.getElementById("answer-four").innerHTML = "D " + Ds[index];
+        if (lan != "tibetan") {
+            document.getElementById("question").innerHTML = (index + 1).toString() + "、" + contents[index];
+            document.getElementById("answer-one").innerHTML = "A " + As[index];
+            document.getElementById("answer-two").innerHTML = "B " + Bs[index];
+            document.getElementById("answer-three").innerHTML = "C " + Cs[index];
+            document.getElementById("answer-four").innerHTML = "D " + Ds[index];
+        } else {
+            document.getElementById("question").innerHTML = (index + 1).toString() + "、" + ti_contents[index];
+            document.getElementById("answer-one").innerHTML = "A " + ti_As[index];
+            document.getElementById("answer-two").innerHTML = "B " + ti_Bs[index];
+            document.getElementById("answer-three").innerHTML = "C " + ti_Cs[index];
+            document.getElementById("answer-four").innerHTML = "D " + ti_Ds[index];
+        }
         document.getElementById("subject_index").innerHTML = index;
         document.getElementById("subject_id").innerHTML = ids[index];
         $("#subject_img").attr("src", imgs[index]);
@@ -243,11 +301,19 @@
         if (nowIndex != 0) {
             nowIndex = nowIndex - 1;
         }
-        document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + contents[nowIndex];
-        document.getElementById("answer-one").innerHTML = "A " + As[nowIndex];
-        document.getElementById("answer-two").innerHTML = "B " + Bs[nowIndex];
-        document.getElementById("answer-three").innerHTML = "C " + Cs[nowIndex];
-        document.getElementById("answer-four").innerHTML = "D " + Ds[nowIndex];
+        if (lan != "tibetan") {
+            document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + contents[nowIndex];
+            document.getElementById("answer-one").innerHTML = "A " + As[nowIndex];
+            document.getElementById("answer-two").innerHTML = "B " + Bs[nowIndex];
+            document.getElementById("answer-three").innerHTML = "C " + Cs[nowIndex];
+            document.getElementById("answer-four").innerHTML = "D " + Ds[nowIndex];
+        } else {
+            document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + ti_contents[nowIndex];
+            document.getElementById("answer-one").innerHTML = "A " + ti_As[nowIndex];
+            document.getElementById("answer-two").innerHTML = "B " + ti_Bs[nowIndex];
+            document.getElementById("answer-three").innerHTML = "C " + ti_Cs[nowIndex];
+            document.getElementById("answer-four").innerHTML = "D " + ti_Ds[nowIndex];
+        }
         document.getElementById("subject_index").innerHTML = nowIndex;
         document.getElementById("subject_id").innerHTML = ids[nowIndex];
         $("#subject_img").attr("src", imgs[nowIndex]);
@@ -271,11 +337,19 @@
         if (nowIndex != len - 1) {
             nowIndex = nowIndex + 1;
         }
-        document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + contents[nowIndex];
-        document.getElementById("answer-one").innerHTML = "A " + As[nowIndex];
-        document.getElementById("answer-two").innerHTML = "B " + Bs[nowIndex];
-        document.getElementById("answer-three").innerHTML = "C " + Cs[nowIndex];
-        document.getElementById("answer-four").innerHTML = "D " + Ds[nowIndex];
+        if (lan != "tibetan") {
+            document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + contents[nowIndex];
+            document.getElementById("answer-one").innerHTML = "A " + As[nowIndex];
+            document.getElementById("answer-two").innerHTML = "B " + Bs[nowIndex];
+            document.getElementById("answer-three").innerHTML = "C " + Cs[nowIndex];
+            document.getElementById("answer-four").innerHTML = "D " + Ds[nowIndex];
+        } else {
+            document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + ti_contents[nowIndex];
+            document.getElementById("answer-one").innerHTML = "A " + ti_As[nowIndex];
+            document.getElementById("answer-two").innerHTML = "B " + ti_Bs[nowIndex];
+            document.getElementById("answer-three").innerHTML = "C " + ti_Cs[nowIndex];
+            document.getElementById("answer-four").innerHTML = "D " + ti_Ds[nowIndex];
+        }
         document.getElementById("subject_index").innerHTML = nowIndex;
         document.getElementById("subject_id").innerHTML = ids[nowIndex];
         $("#subject_img").attr("src", imgs[nowIndex]);
@@ -307,7 +381,11 @@
                     document.getElementById("AnswerButton").style.display = 'none';
                     document.getElementById("ShowJudge").style.display = "block";
                     document.getElementById("ShowJudge").style.color = 'green';
-                    document.getElementById("ShowJudge").innerHTML = "恭喜您，答对啦~";
+                    if (lan != "tibetan") {
+                        document.getElementById("ShowJudge").innerHTML = "恭喜您，答对啦~";
+                    } else {
+                        document.getElementById("ShowJudge").innerHTML = "Congralutions~You're right!";
+                    }
                     document.getElementById("new(" + index.toString() + ")").className = "newli newli-true";
                     isCorrect[index] = "yes";
 
@@ -315,7 +393,11 @@
                     document.getElementById("AnswerButton").style.display = 'none';
                     document.getElementById("ShowJudge").style.display = "block";
                     document.getElementById("ShowJudge").style.color = 'red';
-                    document.getElementById("ShowJudge").innerHTML = "回答错误,正确答案应为:" + data;
+                    if (lan != "tibetan") {
+                        document.getElementById("ShowJudge").innerHTML = "回答错误,正确答案应为:" + answer[index];
+                    } else {
+                        document.getElementById("ShowJudge").innerHTML = "Sorry,you're wrong and the answer is:" + answer[index];
+                    }
                     document.getElementById("new(" + index.toString() + ")").className = "newli newli-false";
                     isCorrect[index] = "no";
                 }
@@ -333,6 +415,11 @@
                 score++;
             }
         }
-        alert("最终得分："+ score);
+        if (lan == "ch") {
+            alert("最终得分：" + score);
+        }
+        else {
+            alert("Your Score is ：" + score);
+        }
     }
 </script>

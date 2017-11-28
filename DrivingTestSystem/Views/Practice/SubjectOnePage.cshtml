@@ -10,91 +10,142 @@
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=key">
                 <img src="~/Resources/img/基础篇.png" class="cate-img">
-                <p>关键字</p>
+                <p id="key">关键字</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=character">
                 <img src="~/Resources/img/驾驶技巧.png" class="cate-img">
-                <p>有字找字</p>
+                <p id="character">有字找字</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=decrease">
                 <img src="~/Resources/img/交通标志.png" class="cate-img">
-                <p>扣分类型</p>
+                <p id="decrease">扣分类型</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=ground">
                 <img src="~/Resources/img/地面标线.png" class="cate-img">
-                <p>地面标线</p>
+                <p id="ground">地面标线</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=panel">
                 <img src="~/Resources/img/交通信号.png" class="cate-img">
-                <p>仪表盘指示灯</p>
+                <p id="panel">仪表盘指示灯</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=sign">
                 <img src="~/Resources/img/交通常识1.png" class="cate-img">
-                <p>标记标识</p>
+                <p id="sign">标记标识</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=time">
                 <img src="~/Resources/img/交通常识2.png" class="cate-img">
-                <p>时间类型</p>
+                <p id="time">时间类型</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=speed">
                 <img src="~/Resources/img/交通常识3.png" class="cate-img">
-                <p>速度类问题</p>
+                <p id="speed">速度类问题</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=punish">
                 <img src="~/Resources/img/交警罚没.png" class="cate-img">
-                <p>罚款判刑类</p>
+                <p id="punish">罚款判刑类</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=light">
                 <img src="~/Resources/img/灯光.png" class="cate-img">
-                <p>信号灯</p>
+                <p id="light">信号灯</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=first">
                 <img src="~/Resources/img/道路标志.png" class="cate-img">
-                <p>先行原则</p>
+                <p id="first">先行原则</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=symbol">
                 <img src="~/Resources/img/仪表盘.png" class="cate-img">
-                <p>交通标志</p>
+                <p id="symbol">交通标志</p>
             </a>
         </div>
         <div class="col-md-12 col-sm-1 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=safe">
                 <img src="~/Resources/img/驾校.png" class="cate-img" style="padding-bottom: 36px">
-                <p>安全行驶</p>
+                <p id="safe">安全行驶</p>
             </a>
         </div>
     </div>
 </div>
+
+
+<script>
+    function tibetan_ps1() {
+        $("#safe").text("safe");
+        $("#symbol").text("symbol");
+        $("#first").text("first");
+        $("#light").text("light");
+        $("#punish").text("punish");
+        $("#speed").text("speed");
+        $("#time").text("time");
+        $("#sign").text("sign");
+        $("#panel").text("panel");
+        $("#ground").text("ground");
+        $("#decrease").text("decrease");
+        $("#character").text("character");
+        $("#key").text("key");
+    }
+    function Ch_ps1() {
+        $("#safe").text("安全形势");
+        $("#symbol").text("交通标志");
+        $("#first").text("先行规则");
+        $("#light").text("信号灯");
+        $("#punish").text("罚款判刑类");
+        $("#speed").text("速度类问题");
+        $("#time").text("时间类型");
+        $("#sign").text("标记标识");
+        $("#panel").text("仪表盘指示灯");
+        $("#ground").text("地面标识");
+        $("#decrease").text("扣分类型");
+        $("#character").text("有字找字");
+        $("#key").text("关键字");
+    }
+    $(document).ready(function () {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/UserLogin/getLan/",
+            data: {},
+            success: function (data) {
+                lan = data;
+                if (data != "ch") {
+                    tibetan_ps1();
+                }
+                else {
+                    Ch_ps1();
+                }
+            }
+        });
+    });
+</script>

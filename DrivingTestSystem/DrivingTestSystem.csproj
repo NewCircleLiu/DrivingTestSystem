@@ -256,6 +256,12 @@
   <ItemGroup>
     <Content Include="Views\Back\Index.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Practice\OnePuzzle.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Exam\OnePuzzle.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

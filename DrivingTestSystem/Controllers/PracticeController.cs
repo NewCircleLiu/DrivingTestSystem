@@ -68,6 +68,27 @@ namespace DrivingTestSystem.Controllers
             return View();
         }
         [HttpGet]
+        public ActionResult OnePuzzle(string ctype)
+        {
+            string lan = (string)Session["language"];
+            Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype == ctype && s.subject_class == "1").ToArray();
+            Subject[] sArray = getRandomList(sOld);
+            if (Session["User"] == null)
+            {
+                ViewBag.len = sArray.Length > 4 ? 4 : sArray.Length; //如果是游客，最多给四个题
+                ViewBag.language = lan;
+                ViewBag.nowIndex = 0;
+                return View(sArray);
+            }
+            else
+            {
+                ViewBag.len = sArray.Length;
+                ViewBag.nowIndex = 0;
+                ViewBag.language = lan;
+                return View(sArray);
+            }
+        }
+        [HttpGet]
         public ActionResult FourPuzzle(string ctype)
         {
             string lan = (string)Session["language"];
