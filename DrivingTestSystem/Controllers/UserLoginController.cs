@@ -33,8 +33,12 @@ namespace DrivingTestSystem.Controllers
         }
         [HttpPost]
         public ActionResult getLan()  //获得当前的语言
-        { 
+        {
+            if ((string)Session["language"] == null) {
+                Session["language"] = "tibetan";
+            }
             string lan=(string)Session["language"];
+            
             return Content(lan);
         }
         public ActionResult CheckUser(string account, string password, string verifycode)

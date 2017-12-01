@@ -71,7 +71,7 @@ namespace DrivingTestSystem.Controllers
         public ActionResult OnePuzzle(string ctype)
         {
             string lan = (string)Session["language"];
-            Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype == ctype && s.subject_class == "1").ToArray();
+            Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype == ctype).ToArray();
             Subject[] sArray = getRandomList(sOld);
             if (Session["User"] == null)
             {
@@ -92,7 +92,7 @@ namespace DrivingTestSystem.Controllers
         public ActionResult FourPuzzle(string ctype)
         {
             string lan = (string)Session["language"];
-            Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype == ctype && s.subject_class == "4").ToArray();
+            Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype == ctype).ToArray();
             Subject[] sArray = getRandomList(sOld);
             if (Session["User"] == null)
             {

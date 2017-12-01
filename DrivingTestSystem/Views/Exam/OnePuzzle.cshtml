@@ -13,37 +13,6 @@
         ViewBag.account = u.user_account;
         ViewBag.user_img = u.user_img;
     }
-    else
-    {
-        ViewBag.account = "免费体验";
-    }
-    switch (Model[0].subject_ctype)
-    {
-        case "basic":
-            ViewBag.title = "基础篇";
-            break;
-        case "driving":
-            ViewBag.title = "驾驶技巧";
-            break;
-        case "sign":
-            ViewBag.title = "交通标志";
-            break;
-        case "ground":
-            ViewBag.title = "地面标线";
-            break;
-        case "signal":
-            ViewBag.title = "交通信号";
-            break;
-        case "common1":
-            ViewBag.title = "交通常识(1)";
-            break;
-        case "common2":
-            ViewBag.title = "交通常识(2)";
-            break;
-        default:
-            ViewBag.title = "交通常识(3)";
-            break;
-    }
 }
 <script>
     var contents = [];
@@ -63,20 +32,21 @@
     var s_t = [];
     var isCorrect = [];
     var answer = [];
+    var type = [];
 </script>
 <link href="~/Resources/css/video-js.css" rel="stylesheet"/>
 <script src="~/Resources/js/video.min.js"></script>
 
 <section style="display:flex;margin-left: 0px;margin-right:0px;width:100%">
     <div class="left-main">
-        <fieldset class="layui-elem-field" style="margin-bottom:40px">
-            <legend>@ViewBag.title</legend>
-            <div class="layui-field-box category">@ViewBag.title</div>
+        <fieldset class="layui-elem-field" style="margin-bottom:70px">
+            <legend>科目一</legend>
+            <div class="layui-field-box category">科目一</div>
         </fieldset>
         <fieldset class="layui-elem-field" style="min-height: 237px;text-align:center;">
             <legend>用户信息</legend>
             <div class="layui-field-box" style="min-height: 237px;">
-                <img src="@ViewBag.user_img" class="user-img" style="margin-right:20px;margin-bottom:0;display:inline-block;box-sizing: border-box;left: 15%;">
+                <img src="~/Resources/img/user.jpg" class="user-img" style="margin-right:20px;margin-bottom:0;display:inline-block;box-sizing: border-box;left: 15%;">
                 <p>用&nbsp;&nbsp;&nbsp;&nbsp; 户: <span class="user">@ViewBag.account</span></p>
                 <p>练习题数: <span class="user-num">@ViewBag.len</span></p>
                 <p>考试科目: <span class="user-category">科目4</span></p>
@@ -94,14 +64,14 @@
                 <p class="answer-there" id="answer-three">C @Model[0].subject_C</p>
                 <p class="answer-four" id="answer-four">D @Model[0].subject_D</p>
                 <p class="answer-judge" style="width: 50%; display: none; text-align:center" id="ShowJudge"></p>
-                <img src="@Model[0].subject_img" class="que-img pc-que-img" id="subject_img">
+                <img src="@Model[0].subject_img" class="que-img pc-que-img" id="subject_img" style="margin:0;margin-right:20px;margin-bottom:40px">
                 <div style="position: absolute;bottom: 2%;width: 100%;margin-bottom:10px">
                     <div style="float: left;" class="answer-test">
                         <button class="layui-btn layui-btn-normal play-audio" id="playcontent"><i class="glyphicon glyphicon-volume-up" style="font-size: 10px;"></i>音频</button>
                         <audio src="" class="answer-audio" style="display: none;" id="subject_sound_trick">
                             您的浏览器不支持 audio 标签。
                         </audio>
-                        <audio src="" class="answer-audio" style="display: none;" id="subject_sound_content">
+                        <audio src="@Model[0].subject_sound_content_tibetan" class="answer-audio" style="display: none;" id="subject_sound_content">
                             您的浏览器不支持 audio 标签。
                         </audio>
                         <!--<audio src="/Public/video/right.wav" id="turename" style="display: none;"></audio>-->
@@ -137,23 +107,53 @@
                 @for (int i = 0; i < ViewBag.len; i++)
                 {
                     <script>
-                        contents.push("@Model[i].subject_content");
-                        ti_contents.push("@Model[i].subject_content_tibetan");
-                        As.push("@Model[i].subject_A");
-                        ti_As.push("@Model[i].subject_A_tibetan");
-                        Bs.push("@Model[i].subject_B");
-                        ti_Bs.push("@Model[i].subject_B_tibetan");
+                        contents.push("@Model[i].subject_content.ToString().Trim()");
+                        ti_contents.push("@Model[i].subject_content_tibetan.ToString().Trim()");
+                        As.push("@Model[i].subject_A.ToString().Trim()");
+                        ti_As.push("@Model[i].subject_A_tibetan.ToString().Trim()");
+                        Bs.push("@Model[i].subject_B.ToString().Trim()");
+                        ti_Bs.push("@Model[i].subject_B_tibetan.ToString().Trim()");
+                    </script>
+                    if (Model[i].subject_C == null)
+                    {
+                    <script>
                         Cs.push("@Model[i].subject_C");
                         ti_Cs.push("@Model[i].subject_C_tibetan");
                         Ds.push("@Model[i].subject_D");
                         ti_Ds.push("@Model[i].subject_D_tibetan");
+                    </script>
+                    }
+                    else
+                    {
+                        <script>
+                            Cs.push("@Model[i].subject_C.ToString().Trim()");
+                            ti_Cs.push("@Model[i].subject_C_tibetan.ToString().Trim()");
+                            Ds.push("@Model[i].subject_D.ToString().Trim()");
+                            ti_Ds.push("@Model[i].subject_D_tibetan.ToString().Trim()");
+                        </script>
+                    }
+                    <script>
                         ids.push(@Model[i].subject_id);
-                        imgs.push("@Model[i].subject_img");
+                    </script>
+                    if (Model[i].subject_img != null)
+                    {
+                        <script>
+                            imgs.push("@Model[i].subject_img.ToString().Trim()");
+                         </script>
+                    }
+                    else
+                    { 
+                        <script>
+                            imgs.push("@Model[i].subject_img");
+                        </script>
+                    }
+                    <script>
                         video.push("@Model[i].subject_video");
-                        s_c.push("@Model[i].subject_sound_content");
+                        s_c.push("@Model[i].subject_sound_content_tibetan");
                         s_t.push("@Model[i].subject_sound_trick");
                         isCorrect.push("not");
-                        answer.push("@Model[i].subject_answer");
+                        answer.push("@Model[i].subject_answer.ToString().Trim()");
+                        type.push("@Model[i].subject_type.ToString().Trim()");
                     </script>
                         <li id="new(@i)" class="newli newli-btn" onclick="ToANewPuzzle(@i)" style="cursor:pointer">@(i + 1)</li>
                 }
@@ -165,7 +165,7 @@
     <div class="modal-dialog">
         <div class="modal-content" style="min-width:740px">
             <video id="my-video" class="video-js" controls preload="auto" width="740" height="400"  style="width:100%">
-                <source src="@Model[0].subject_video" type="video/mp4" id="video_src">
+                <source src="@Model[0].subject_video" type="video/webm" id="video_src">
                 <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that
                     <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                 </p>
@@ -178,20 +178,39 @@
     var lan;
     function Ch_e1() {
         $(".user-category").text("科目四");
+        if (type[0] != "C") {
+            document.getElementById("answer-three").innerHTML = "<br/>";
+            document.getElementById("answer-four").innerHTML = "<br/>";
+            $("#C").hide();
+            $("#D").hide();
+        }
     }
     function tibetan_e1() {
         $(".user-category").text("Four");
         document.getElementById("question").innerHTML = "1、" + ti_contents[0];
         document.getElementById("answer-one").innerHTML = "A " + ti_As[0];
         document.getElementById("answer-two").innerHTML = "B " + ti_Bs[0];
-        document.getElementById("answer-three").innerHTML = "C " + ti_Cs[0];
-        document.getElementById("answer-four").innerHTML = "D " + ti_Ds[0];
+        if (type[0] == "C") {
+            document.getElementById("answer-three").innerHTML = "C " + ti_Cs[0];
+            document.getElementById("answer-four").innerHTML = "D " + ti_Ds[0];
+            $("#C").show();
+            $("#D").show();
+        } else {
+            document.getElementById("answer-three").innerHTML = "<br/>";
+            document.getElementById("answer-four").innerHTML = "<br/>";
+            $("#C").hide();
+            $("#D").hide();
+        }
         $("#playcontent").html("<i class='glyphicon glyphicon-volume-up' style='font-size: 10px;'></i>sound");
         $("#playtrick").html("<i class='glyphicon glyphicon-star' style='font-size: 10px;'></i>trick");
         $("#playvideo").html("<i class='glyphicon glyphicon-facetime-video' style='font-size: 10px;'></i>video");
         $("#handin").html("<i class='glyphicon glyphicon-saved' style='font-size: 20px;'></i> hand&nbsp;in");
     }
     $(document).ready(function () {
+        $("#subject_img").attr("src", decodeURI(encodeURI(imgs[0]).replace("%E2%80%AA", "")));
+        $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[0]).replace("%E2%80%AA", "")));
+        $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[0]).replace("%E2%80%AA", "")));
+        $("#video_src").attr("src", decodeURI(encodeURI(video[0]).replace("%E2%80%AA", "")));
         $.ajax({
             type: "post",
             async: false,
@@ -234,7 +253,7 @@
             myPlayer.pause();
         });
     });
-    function show(index) {
+    function show_box(index) {
         document.getElementById("AnswerButton").style.display = 'none';
         document.getElementById("ShowJudge").style.display = "block";
         document.getElementById("ShowJudge").style.color = 'green';
@@ -245,7 +264,7 @@
         }
         document.getElementById("new(" + index.toString() + ")").className = "newli newli-true";
     }
-    function hide(index) {
+    function hide_box(index) {
         document.getElementById("AnswerButton").style.display = 'none';
         document.getElementById("ShowJudge").style.display = "block";
         document.getElementById("ShowJudge").style.color = 'red';
@@ -262,30 +281,48 @@
             document.getElementById("question").innerHTML = (index + 1).toString() + "、" + contents[index];
             document.getElementById("answer-one").innerHTML = "A " + As[index];
             document.getElementById("answer-two").innerHTML = "B " + Bs[index];
-            document.getElementById("answer-three").innerHTML = "C " + Cs[index];
-            document.getElementById("answer-four").innerHTML = "D " + Ds[index];
+            if (type[index] == "C") {
+                document.getElementById("answer-three").innerHTML = "C " + Cs[index];
+                document.getElementById("answer-four").innerHTML = "D " + Ds[index];
+                $("#C").show();
+                $("#D").show();
+            } else {
+                document.getElementById("answer-three").innerHTML = "<br/>";
+                document.getElementById("answer-four").innerHTML = "<br/>";
+                $("#C").hide();
+                $("#D").hide();
+            }
         } else {
             document.getElementById("question").innerHTML = (index + 1).toString() + "、" + ti_contents[index];
             document.getElementById("answer-one").innerHTML = "A " + ti_As[index];
             document.getElementById("answer-two").innerHTML = "B " + ti_Bs[index];
-            document.getElementById("answer-three").innerHTML = "C " + ti_Cs[index];
-            document.getElementById("answer-four").innerHTML = "D " + ti_Ds[index];
+            if (type[index] == "C") {
+                document.getElementById("answer-three").innerHTML = "C " + ti_Cs[index];
+                document.getElementById("answer-four").innerHTML = "D " + ti_Ds[index];
+                $("#C").show();
+                $("#D").show();
+            } else {
+                document.getElementById("answer-three").innerHTML = "<br/>";
+                document.getElementById("answer-four").innerHTML = "<br/>";
+                $("#C").hide();
+                $("#D").hide();
+            }
         }
         document.getElementById("subject_index").innerHTML = index;
         document.getElementById("subject_id").innerHTML = ids[index];
-        $("#subject_img").attr("src", imgs[index]);
-        $("#subject_sound_trick").attr("src", s_t[index]);
-        $("#subject_sound_content").attr("src", s_c[index]);
-        $("#video_src").attr("src", video[index]);
+        $("#subject_img").attr("src", decodeURI(encodeURI(imgs[index]).replace("%E2%80%AA", "")));
+        $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[index]).replace("%E2%80%AA", "")));
+        $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[index]).replace("%E2%80%AA", "")));
+        $("#video_src").attr("src", decodeURI(encodeURI(video[index]).replace("%E2%80%AA", "")));
         if (isCorrect[index] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";
         }
         else if (isCorrect[index] == "yes") {
-            show(index);
+            show_box(index);
         }
         else {
-            hide(index);
+            hide_box(index);
         }
     }
     function toPastPuzzle() {
@@ -298,30 +335,48 @@
             document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + contents[nowIndex];
             document.getElementById("answer-one").innerHTML = "A " + As[nowIndex];
             document.getElementById("answer-two").innerHTML = "B " + Bs[nowIndex];
-            document.getElementById("answer-three").innerHTML = "C " + Cs[nowIndex];
-            document.getElementById("answer-four").innerHTML = "D " + Ds[nowIndex];
+            if (type[nowIndex] == "C") {
+                $("#C").show();
+                $("#D").show();
+                document.getElementById("answer-three").innerHTML = "C " + Cs[nowIndex];
+                document.getElementById("answer-four").innerHTML = "D " + Ds[nowIndex];
+            } else {
+                document.getElementById("answer-three").innerHTML = "<br/>";
+                document.getElementById("answer-four").innerHTML = "<br/>";
+                $("#C").hide();
+                $("#D").hide();
+            }
         } else {
             document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + ti_contents[nowIndex];
             document.getElementById("answer-one").innerHTML = "A " + ti_As[nowIndex];
             document.getElementById("answer-two").innerHTML = "B " + ti_Bs[nowIndex];
-            document.getElementById("answer-three").innerHTML = "C " + ti_Cs[nowIndex];
-            document.getElementById("answer-four").innerHTML = "D " + ti_Ds[nowIndex];
+            if (type[nowIndex] == "C") {
+                $("#C").show();
+                $("#D").show();
+                document.getElementById("answer-three").innerHTML = "C " + ti_Cs[nowIndex];
+                document.getElementById("answer-four").innerHTML = "D " + ti_Ds[nowIndex];
+            } else {
+                $("#C").hide();
+                $("#D").hide();
+                document.getElementById("answer-three").innerHTML = "<br/>";
+                document.getElementById("answer-four").innerHTML = "<br/>";
+            }
         }
         document.getElementById("subject_index").innerHTML = nowIndex;
         document.getElementById("subject_id").innerHTML = ids[nowIndex];
-        $("#subject_img").attr("src", imgs[nowIndex]);
-        $("#subject_sound_trick").attr("src", s_t[nowIndex]);
-        $("#subject_sound_content").attr("src", s_c[nowIndex]);
-        $("#video_src").attr("src", video[nowIndex]);
+        $("#subject_img").attr("src", decodeURI(encodeURI(imgs[nowIndex]).replace("%E2%80%AA", "")));
+        $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[nowIndex]).replace("%E2%80%AA", "")));
+        $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[nowIndex]).replace("%E2%80%AA", "")));
+        $("#video_src").attr("src", decodeURI(encodeURI(video[nowIndex]).replace("%E2%80%AA", "")));
         if (isCorrect[nowIndex] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";
         }
         else if (isCorrect[nowIndex] == "yes") {
-            show(nowIndex);
+            show_box(nowIndex);
         }
         else {
-            hide(nowIndex);
+            hide_box(nowIndex);
         }
     }
     function toNextPuzzle(len) {
@@ -334,30 +389,49 @@
             document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + contents[nowIndex];
             document.getElementById("answer-one").innerHTML = "A " + As[nowIndex];
             document.getElementById("answer-two").innerHTML = "B " + Bs[nowIndex];
-            document.getElementById("answer-three").innerHTML = "C " + Cs[nowIndex];
-            document.getElementById("answer-four").innerHTML = "D " + Ds[nowIndex];
+            if (type[nowIndex] == "C") {
+                $("#C").show();
+                $("#D").show();
+                document.getElementById("answer-three").innerHTML = "C " + Cs[nowIndex];
+                document.getElementById("answer-four").innerHTML = "D " + Ds[nowIndex];
+            } else {
+                alert(As[nowIndex]);
+                $("#C").hide();
+                $("#D").hide();
+                document.getElementById("answer-three").innerHTML = "<br/>";
+                document.getElementById("answer-four").innerHTML = "<br/>";
+            }
         } else {
             document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + ti_contents[nowIndex];
             document.getElementById("answer-one").innerHTML = "A " + ti_As[nowIndex];
             document.getElementById("answer-two").innerHTML = "B " + ti_Bs[nowIndex];
-            document.getElementById("answer-three").innerHTML = "C " + ti_Cs[nowIndex];
-            document.getElementById("answer-four").innerHTML = "D " + ti_Ds[nowIndex];
+            if (type[nowIndex] == "C") {
+                $("#C").show();
+                $("#D").show();
+                document.getElementById("answer-three").innerHTML = "C " + ti_Cs[nowIndex];
+                document.getElementById("answer-four").innerHTML = "D " + ti_Ds[nowIndex];
+            } else {
+                $("#C").hide();
+                $("#D").hide();
+                document.getElementById("answer-three").innerHTML = "<br/>";
+                document.getElementById("answer-four").innerHTML = "<br/>";
+            }
         }
         document.getElementById("subject_index").innerHTML = nowIndex;
         document.getElementById("subject_id").innerHTML = ids[nowIndex];
-        $("#subject_img").attr("src", imgs[nowIndex]);
-        $("#subject_sound_trick").attr("src", s_t[nowIndex]);
-        $("#subject_sound_content").attr("src", s_c[nowIndex]);
-        $("#video_src").attr("src", video[nowIndex]);
+        $("#subject_img").attr("src", decodeURI(encodeURI(imgs[nowIndex]).replace("%E2%80%AA", "")));
+        $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[nowIndex]).replace("%E2%80%AA", "")));
+        $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[nowIndex]).replace("%E2%80%AA", "")));
+        $("#video_src").attr("src", decodeURI(encodeURI(video[nowIndex]).replace("%E2%80%AA", "")));
         if (isCorrect[nowIndex] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";
         }
         else if (isCorrect[nowIndex] == "yes") {
-            show(nowIndex);
+            show_box(nowIndex);
         }
         else {
-            hide(nowIndex);
+            hide_box(nowIndex);
         }
     }
     function checkAnswer(user_answer) {

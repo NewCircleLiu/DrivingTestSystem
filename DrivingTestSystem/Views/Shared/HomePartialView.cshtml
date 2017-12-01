@@ -8,18 +8,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="~/UserLogin/Index/">
-                <img src="~/Resources/img/logo.png" id="top_img">
-            </a>
         </div>
         <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-2" style="height: 1px; padding-bottom: 5px">
             <ul class="nav navbar-nav navbar-left">
-                <li onclick="changeToCh()" style="padding: 0; color: whitesmoke; margin-bottom: 15px; padding-right: 5px; font-size: 16px; cursor: pointer;">汉语|</li>
-                <li onclick="changeToTibetan()" style="padding: 0; color: whitesmoke; margin-bottom: 15px; padding-right: 30px; font-size: 16px; cursor: pointer;">藏语</li>
+                <a href="~/UserLogin/Index/" style="display:block;margin-right:20px;margin-top:15px">
+                    <img src="~/Resources/img/logo.ico" id="top_img" width="30px">
+                </a>
+            </ul>
+            <ul class="nav navbar-nav navbar-left">
+                <li onclick="changeToCh()" style="padding: 0; color: whitesmoke; margin-bottom: 15px; margin-top:20px;padding-right: 5px; font-size: 16px; cursor: pointer;">汉语|</li>
+                <li onclick="changeToTibetan()" style="padding: 0; color: whitesmoke; margin-bottom: 15px; margin-top:20px;padding-right: 30px; font-size: 16px; cursor: pointer;">藏语</li>
             </ul>
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding: 0; color: whitesmoke; margin-bottom: 15px; padding-right: 30px; font-size: 16px;" id="daily">日常练习<strong class="caret"></strong></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding: 0; color: whitesmoke; margin-bottom: 15px; margin-top:20px;padding-right: 30px; font-size: 16px;" id="daily">日常练习<strong class="caret"></strong></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="~/Practice/SubjectOnePage/" id="daily_one">科目一</a>
@@ -31,14 +33,14 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding: 0; color: whitesmoke; font-size: 16px;" id="exam">模拟考试<strong class="caret"></strong></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding: 0; color: whitesmoke; font-size: 16px;margin-top:20px" id="exam">模拟考试<strong class="caret"></strong></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="~/Exam/SubjectOnePage/" id="exam_one">科目一</a>
+                            <a href="~/Exam/OnePuzzle/" id="exam_one">科目一</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="~/Exam/SubjectFourPage/" id="exam_four">科目四</a>
+                            <a href="~/Exam/FourPuzzle/" id="exam_four">科目四</a>
                         </li>
                     </ul>
                 </li>

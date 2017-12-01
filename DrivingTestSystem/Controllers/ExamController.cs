@@ -60,7 +60,7 @@ namespace DrivingTestSystem.Controllers
             return Content(lan);
         }
         [UserAuthorize]
-        public ActionResult SubjectOnePage()
+  /*      public ActionResult SubjectOnePage()
         {
             return View();
         }
@@ -69,25 +69,32 @@ namespace DrivingTestSystem.Controllers
         {
             return View();
         }
+ */
         [HttpGet]
-        public ActionResult OnePuzzle(string ctype)
+        public ActionResult OnePuzzle()
         {
             string lan = (string)Session["language"];
-            Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype == ctype && s.subject_class == "1").ToArray();
+            Subject[] sOld = sc.SubjectList.ToArray();
             Subject[] sArray = getRandomList(sOld);
-            ViewBag.len = sArray.Length > 100 ? 100 : sArray.Length;
+            List<Subject> s_a = new List<Subject>();
+            int len = sArray.Length > 100 ? 100 : sArray.Length;
+            ViewBag.len=len;
+            for (int i = 0; i < len; i++) {
+                s_a.Add(sArray[i]);
+            }
             ViewBag.nowIndex = 0;
             ViewBag.language = lan;
-            return View(sArray);
+            return View(s_a.ToArray());
         }
         [HttpGet]
-        public ActionResult FourPuzzle(string ctype, string language = "ch")
+        public ActionResult FourPuzzle() //科目四每题两分
         {
-            Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype == ctype && s.subject_class == "4").ToArray();
+            string lan = (string)Session["language"];
+            Subject[] sOld = sc.SubjectList.ToArray();
             Subject[] sArray = getRandomList(sOld);
-            ViewBag.len = sArray.Length > 100 ? 100 :sArray.Length;
+            ViewBag.len = sArray.Length > 50 ? 50 :sArray.Length;
             ViewBag.nowIndex = 0;
-            ViewBag.language = language;
+            ViewBag.language = lan;
             return View(sArray);
         }
         [HttpPost]
