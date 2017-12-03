@@ -40,7 +40,7 @@
             <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-2" style="height: 1px; padding-bottom: 10px">
                 <ul class="nav navbar-nav navbar-left">
                     <li onclick="changeToCh()" style="padding: 15px; padding-right: 0px; cursor: pointer">汉语|</li>
-                    <li onclick="changeToTibetan()" style="padding: 15px; padding-left: 0px; cursor: pointer">藏语</li>
+                    <li onclick="changeToTibetan()" style="padding: 15px; padding-left: 0px; cursor: pointer">བོད་སྐད།</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -156,6 +156,7 @@
         $("#ValidateCode").attr("placeholder", "验证码");
         $("#user_password").attr("placeholder", "密码");
         $("#user_pass_label").text("密码");
+
         $("#user_account").attr("placeholder", "用户名");
         $("#user_name_label").text("用户名");
         $("#login_label").text("登录");
@@ -167,25 +168,34 @@
         $("#daily").text("日常练习");
     }
     function tibetan() {
-        $("#logout_button").attr("value", "logout"); //藏语的登出
-        $("#photo").text("photo");
-        $("#personal_center").text("personal_center");
-        $("#login_button").attr("value","login");
-        $("#isRegistered").text("isRegistered?");
-        $("#RegisterNow").text("RegisterNow");
-        $("#ForgetPass").text("ForgetPass?");
-        $("#ValidateCode").attr("placeholder", "ValidateCode");
-        $("#user_password").attr("placeholder", "Password");
-        $("#user_pass_label").text("Password");
-        $("#user_account").attr("placeholder", "Account");
-        $("#user_name_label").text("Account");
-        $("#login_label").text("Login");
-        $("#exam_four").text("Four");
-        $("#exam_one").text("One");
-        $("#exam").text("Exam");
-        $("#daily_one").text("One");
-        $("#daily_four").text("Four");
-        $("#daily").text("Practice");
+        $("#logout_button").attr("value", "ཕྱིར་འབུད།"); //藏语的登出
+        $("#photo").text("འདྲ་པར།");
+        $("#personal_center").text("མི་སྒེར་གྱི་ལྟེ་གནས");
+        $("#login_button").attr("value", "ཐོ་འཇུག");
+        $("#isRegistered").text("");
+        $("#RegisterNow").text("");
+        $("#ForgetPass").text("");
+        $("#ValidateCode").attr("placeholder", "ར་སྤྲོད་ཨང་གྲངས།");
+        $("#user_password").attr("placeholder", "གསང་གྲངས།");
+        $("#user_pass_label").text("གསང་གྲངས།");
+        //密码གསང་གྲངས།
+        //一གཅིག
+        //四བཞི
+        //考试རྒྱུགས་ལེན་པ།
+        //交卷རྒྱུགས་ཤོག་
+        //练习སྤྱར་སྦྱོང་།
+        //登录ཐོ་འཇུག   登出ཕྱིར་འབུད།个人中心མི་སྒེར་གྱི་ལྟེ་གནས།主页གཙོ་ངོས
+        //账号རྩིས་ཐོའི་ཨང་གྲངས།
+        //验证码ར་སྤྲོད་ཨང་གྲངས།
+        $("#user_account").attr("placeholder", "རྩིས་ཐོའི་ཨང་གྲངས།");
+        $("#user_name_label").text("རྩིས་ཐོའི་ཨང་གྲངས།");
+        $("#login_label").text("ཐོ་འཇུག");
+        $("#exam_four").text("བཞི");
+        $("#exam_one").text("གཅིག");
+        $("#exam").text("རྒྱུགས་ལེན་པ།");
+        $("#daily_one").text("གཅིག");
+        $("#daily_four").text("བཞི");
+        $("#daily").text("སྤྱར་སྦྱོང་།");
     }
     function changeToCh() {
         jQuery.post(

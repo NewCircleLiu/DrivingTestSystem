@@ -17,7 +17,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-left">
                 <li onclick="changeToCh()" style="padding: 0; color: whitesmoke; margin-bottom: 15px; margin-top:20px;padding-right: 5px; font-size: 16px; cursor: pointer;">汉语|</li>
-                <li onclick="changeToTibetan()" style="padding: 0; color: whitesmoke; margin-bottom: 15px; margin-top:20px;padding-right: 30px; font-size: 16px; cursor: pointer;">藏语</li>
+                <li onclick="changeToTibetan()" style="padding: 0; color: whitesmoke; margin-bottom: 15px; margin-top:20px;padding-right: 30px; font-size: 16px; cursor: pointer;">བོད་སྐད།</li>
             </ul>
             <ul class="nav navbar-nav">
                 <li class="dropdown">
@@ -61,13 +61,14 @@
         $("#goBack").text("回到首页");
     }
     function tibetan() {
-        $("#exam_four").text("Four");
-        $("#exam_one").text("One");
-        $("#exam").text("Exam");
-        $("#daily_one").text("One");
-        $("#daily_four").text("Four");
-        $("#daily").text("Practice");
-        $("#goBack").text("goBack");
+        $("#exam_four").text("བཞི");
+        $("#exam_one").text("གཅིག");
+        $("#exam").text("རྒྱུགས་ལེན་པ།");
+        $("#daily_one").text("གཅིག");
+        $("#daily_four").text("བཞི");
+        $("#daily").text("སྤྱར་སྦྱོང་།");
+        $("#goBack").text("གཙོ་ངོས");
+
     }
     function changeToCh() {
         jQuery.post(

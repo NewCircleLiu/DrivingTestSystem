@@ -91,8 +91,8 @@
         </fieldset>
         <div class="right-footer">
             <div class="right-footer-btn" style="margin-top:20px" >
-                <button class="layui-btn upper" onclick="toPastPuzzle()">上一题</button>
-                <button class="layui-btn Next" onclick="toNextPuzzle(@ViewBag.len)">下一题</button>
+                <button class="layui-btn upper" onclick="toPastPuzzle()" id="upper">上一题</button>
+                <button class="layui-btn Next" onclick="toNextPuzzle(@ViewBag.len)" id="next">下一题</button>
                 <button class="layui-btn layui-btn-warm goover" style="float: right;display:none"><i class="layui-icon" style="font-size: 20px;"></i> 交卷</button>
                 <button class="layui-btn layui-btn-warm Refresh" style="float: right;display: none;" onclick="location.reload()"><i class="layui-icon" style="font-size: 20px;">ဂ</i> 重做</button>
             </div>
@@ -177,7 +177,9 @@
 <script>
     var lan;
     function Ch_e1() {
-        $(".user-category").text("科目四");
+        $(".user-category").text("科目一");
+        $("#next").text("下一题");
+        $("#upper").text("上一题");
         if (type[0] != "C") {
             document.getElementById("answer-three").innerHTML = "<br/>";
             document.getElementById("answer-four").innerHTML = "<br/>";
@@ -186,7 +188,9 @@
         }
     }
     function tibetan_e1() {
-        $(".user-category").text("Four");
+        $(".user-category").text("གཅིག");
+        $("#next").text("འོག་གི་དྲི་བ།");
+        $("#upper").text("གོང་གི་དྲི་བ།");
         document.getElementById("question").innerHTML = "1、" + ti_contents[0];
         document.getElementById("answer-one").innerHTML = "A " + ti_As[0];
         document.getElementById("answer-two").innerHTML = "B " + ti_Bs[0];
@@ -201,10 +205,16 @@
             $("#C").hide();
             $("#D").hide();
         }
-        $("#playcontent").html("<i class='glyphicon glyphicon-volume-up' style='font-size: 10px;'></i>sound");
-        $("#playtrick").html("<i class='glyphicon glyphicon-star' style='font-size: 10px;'></i>trick");
-        $("#playvideo").html("<i class='glyphicon glyphicon-facetime-video' style='font-size: 10px;'></i>video");
-        $("#handin").html("<i class='glyphicon glyphicon-saved' style='font-size: 20px;'></i> hand&nbsp;in");
+        /*
+一གཅིག
+四བཞི
+交卷རྒྱུགས་ཤོག་སྤྲོད་པ།
+视频བརྙན་ཐུང་།语音སྐད།技巧མཐུ་རྩལ།
+*/
+        $("#playcontent").html("<i class='glyphicon glyphicon-volume-up' style='font-size: 10px;'></i>སྐད།");
+        $("#playtrick").html("<i class='glyphicon glyphicon-star' style='font-size: 10px;'></i>མཐུ་རྩལ།");
+        $("#playvideo").html("<i class='glyphicon glyphicon-facetime-video' style='font-size: 10px;'></i>བརྙན་ཐུང་།");
+        $("#handin").html("<i class='glyphicon glyphicon-saved' style='font-size: 20px;'></i> རྒྱུགས་ཤོག་");
     }
     $(document).ready(function () {
         $("#subject_img").attr("src", decodeURI(encodeURI(imgs[0]).replace("%E2%80%AA", "")));
