@@ -10,60 +10,61 @@
     <div class="row" id="fh5co-features">
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Practice/FourPuzzle?ctype=basic">
+            <a href="~/Practice/FourPuzzle?ctype=key">
                 <img src="~/Resources/img/基础篇.png" class="cate-img">
-                <p id="basic">基础篇</p>
+                <p id="key">关键字</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Practice/FourPuzzle?ctype=driving">
+            <a href="~/Practice/FourPuzzle?ctype=movie">
                 <img src="~/Resources/img/驾驶技巧.png" class="cate-img">
-                <p id="driving">驾驶技巧</p>
+                <p id="movie">动画</p>
             </a>
         </div>
 
-        <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Practice/FourPuzzle?ctype=sign">
+    <!--    <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
+            <a href="#">
                 <img src="~/Resources/img/交通标志.png" class="cate-img">
                 <p id="sign">交通标志</p>
             </a>
-        </div>
+        </div>-->
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Practice/FourPuzzle?ctype=ground">
+            <a href="~/Practice/FourPuzzle?ctype=line">
                 <img src="~/Resources/img/地面标线.png" class="cate-img">
                 <p id="ground">地面标线</p>
             </a>
         </div>
 
-        <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
+        <div class="col-md-12 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/FourPuzzle?ctype=signal">
-                <img src="~/Resources/img/交通信号.png" class="cate-img">
+                <img src="~/Resources/img/交通信号.png" class="cate-img" style="padding-bottom:80px">
                 <p id="signal">交通信号</p>
             </a>
         </div>
 
-        <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Practice/FourPuzzle?ctype=common1">
+    <!--    <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
+            <a href="#">
                 <img src="~/Resources/img/交通常识1.png" class="cate-img">
                 <p id="common1">交通常识(1)</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Practice/FourPuzzle?ctype=common2">
+            <a href="#">
                 <img src="~/Resources/img/交通常识2.png" class="cate-img">
                 <p id="common2">交通常识(2)</p>
             </a>
         </div>
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
-            <a href="~/Practice/FourPuzzle?ctype=common3">
+            <a href="#">
                 <img src="~/Resources/img/交通常识3.png" class="cate-img">
                 <p id="common3">交通常识(3)</p>
             </a>
         </div>
+     -->
     </div>
 </div>
 <script>
@@ -73,24 +74,24 @@
         交通常识（1）（2）（3）
         འགྲིལ་འགྲུལ་རྒྱུན་ཤེས།（གཅིག）འགྲིལ་འགྲུལ་རྒྱུན་ཤེས།（གཉིས）འགྲིལ་འགྲུལ་རྒྱུན་ཤེས།（གསུམ）*/
 
-        $("#common3").text("འགྲིལ་འགྲུལ་རྒྱུན་ཤེས།(གསུམ)");
+      /*  $("#common3").text("འགྲིལ་འགྲུལ་རྒྱུན་ཤེས།(གསུམ)");
         $("#common2").text("འགྲིལ་འགྲུལ་རྒྱུན་ཤེས།(གཉིས)");
-        $("#common1").text("འགྲིལ་འགྲུལ་རྒྱུན་ཤེས།(གཅིག)");
+        $("#common1").text("འགྲིལ་འགྲུལ་རྒྱུན་ཤེས།(གཅིག)");*/
         $("#signal").text("བརྡ་རྟགས།");
         $("#ground").text("ཐང་གེ་ཐིག");
-        $("#sign").text("འགྲིམ་འགྲུལ་ཡི་རྟགས");
-        $("#driving").text("རླང་འཁོར་རྩལ།");
-        $("#basic").text("རྨང་གཞི་རིགས།");
+       // $("#sign").text("འགྲིམ་འགྲུལ་ཡི་རྟགས");
+        $("#key").text("གནད་འགག་ཡི་གེ");
+        $("#movie").text("འགུལ་རི");
     }
     function Ch_ps4() {
-        $("#common3").text("交通常识(3)");
+     /*   $("#common3").text("交通常识(3)");
         $("#common2").text("交通常识(2)");
-        $("#common1").text("交通常识(1)");
+        $("#common1").text("交通常识(1)");*/
         $("#signal").text("信号");
         $("#ground").text("地面标线");
-        $("#sign").text("交通标志");
-        $("#driving").text("驾驶技巧");
-        $("#basic").text("基础篇");
+    //    $("#sign").text("交通标志");
+        $("#key").text("关键字");
+        $("#movie").text("动画题");
     }
     $(document).ready(function () {
         $.ajax({

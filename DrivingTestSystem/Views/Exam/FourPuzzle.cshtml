@@ -181,6 +181,7 @@
 
 <script>
     var lan;
+    var nowTime = 0;
     function Ch_e4() {
         $(".user-category").text("科目四");
         $("#next").text("下一题");
@@ -219,6 +220,7 @@
         $("#handin").html("<i class='glyphicon glyphicon-saved' style='font-size: 20px;'></i> རྒྱུགས་ཤོག་");
     }
     $(document).ready(function () {
+        setTimeout("nowTime++", 1000);
         $("#subject_img").attr("src", decodeURI(encodeURI(imgs[0]).replace("%E2%80%AA", "")));
         $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[0]).replace("%E2%80%AA", "")));
         $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[0]).replace("%E2%80%AA", "")));
@@ -273,7 +275,7 @@
         if (lan != "tibetan") {
             document.getElementById("ShowJudge").innerHTML = "恭喜您，答对啦~";
         } else {
-            document.getElementById("ShowJudge").innerHTML = "Congralutions~You're right!";
+            document.getElementById("ShowJudge").innerHTML = "རྟེན་འབྲེལ་ཞུ།ལན་བཏབ་པ་འགྲིག་གི!";
         }
         document.getElementById("new(" + index.toString() + ")").className = "newli newli-true";
     }
@@ -284,7 +286,7 @@
         if (lan != "tibetan") {
             document.getElementById("ShowJudge").innerHTML = "回答错误,正确答案应为:" + answer[index];
         } else {
-            document.getElementById("ShowJudge").innerHTML = "Sorry,you're wrong and the answer is:" + answer[index];
+            document.getElementById("ShowJudge").innerHTML = "ནོར་འདུག,ཡང་དག་པའི་ལན་ནི:" + answer[index];
         }
         document.getElementById("new(" + index.toString() + ")").className = "newli newli-false";
         isCorrect[index] = "no";
@@ -464,7 +466,7 @@
                     if (lan != "tibetan") {
                         document.getElementById("ShowJudge").innerHTML = "恭喜您，答对啦~";
                     } else {
-                        document.getElementById("ShowJudge").innerHTML = "Congralutions~You're right!";
+                        document.getElementById("ShowJudge").innerHTML = "རྟེན་འབྲེལ་ཞུ།ལན་བཏབ་པ་འགྲིག་གི!";
                     }
                     document.getElementById("new(" + index.toString() + ")").className = "newli newli-true";
                     isCorrect[index] = "yes";
@@ -476,7 +478,7 @@
                     if (lan != "tibetan") {
                         document.getElementById("ShowJudge").innerHTML = "回答错误,正确答案应为:" + answer[index];
                     } else {
-                        document.getElementById("ShowJudge").innerHTML = "Sorry,you're wrong and the answer is:" + answer[index];
+                        document.getElementById("ShowJudge").innerHTML = "ནོར་འདུག,ཡང་དག་པའི་ལན་ནི:" + answer[index];
                     }
                     document.getElementById("new(" + index.toString() + ")").className = "newli newli-false";
                     isCorrect[index] = "no";
@@ -487,6 +489,16 @@
     }
     function showYourScore()
     {
+        if (nowTime <= 30000) {
+            if (lan == "ch") {
+                alert("答卷30分钟方可交卷");
+                return;
+            }
+            else {
+                alert("སྐར་མ་སུམ་བཅུ་ཡི་རྗེས་ནས་རྒྱུགས་ཤོག་སྤྲད་ཆོག");
+                return;
+            }
+        }
         var score = 0;
         for(var i=0;i<isCorrect.length;i++)
         {
@@ -499,7 +511,7 @@
             alert("最终得分：" + score);
         }
         else {
-            alert("Your Score is ：" + score);
+            alert(" སྡོམ་སྐར། ：" + score);
         }
     }
 </script>

@@ -60,16 +60,6 @@ namespace DrivingTestSystem.Controllers
             return Content(lan);
         }
         [UserAuthorize]
-  /*      public ActionResult SubjectOnePage()
-        {
-            return View();
-        }
-        [UserAuthorize]
-        public ActionResult SubjectFourPage()
-        {
-            return View();
-        }
- */
         [HttpGet]
         public ActionResult OnePuzzle()
         {
@@ -86,6 +76,7 @@ namespace DrivingTestSystem.Controllers
             ViewBag.language = lan;
             return View(s_a.ToArray());
         }
+        [UserAuthorize]
         [HttpGet]
         public ActionResult FourPuzzle() //科目四每题两分
         {

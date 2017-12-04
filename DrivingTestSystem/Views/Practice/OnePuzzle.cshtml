@@ -89,11 +89,11 @@
         <fieldset class="layui-elem-field" style="min-height: 430px;position: relative;margin-left:10px;max-width:100%">
             <legend>考试题目</legend>
             <div class="layui-field-box" style="text-align:left">
-                <p class="question" id="question">1、@Model[0].subject_content？</p>
-                <p class="answer-one" id="answer-one">A @Model[0].subject_A</p>
-                <p class="answer-two" id="answer-two"">B @Model[0].subject_B</p>
-                <p class="answer-there" id="answer-three">C @Model[0].subject_C</p>
-                <p class="answer-four" id="answer-four">D @Model[0].subject_D</p>
+                <p class="question" id="question"  style="font-weight:bold;font-size:18px">1、@Model[0].subject_content？</p>
+                <p class="answer-one" id="answer-one" style="font-weight:bold;font-size:18px">A @Model[0].subject_A</p>
+                <p class="answer-two" id="answer-two"  style="font-weight:bold;font-size:18px">B @Model[0].subject_B</p>
+                <p class="answer-there" id="answer-three"  style="font-weight:bold;font-size:18px">C @Model[0].subject_C</p>
+                <p class="answer-four" id="answer-four"  style="font-weight:bold;font-size:18px">D @Model[0].subject_D</p>
                 <p class="answer-judge" style="width: 50%; display: none; text-align:center" id="ShowJudge"></p>
                 <img src="@Model[0].subject_img" class="que-img pc-que-img" id="subject_img">
                 <div style="position: absolute;bottom: 2%;width: 100%;margin-bottom:10px">
@@ -138,24 +138,53 @@
                 @for (int i = 0; i < ViewBag.len; i++)
                 {
                     <script>
-                        contents.push("@Model[i].subject_content");
-                        ti_contents.push("@Model[i].subject_content_tibetan");
-                        As.push("@Model[i].subject_A");
-                        ti_As.push("@Model[i].subject_A_tibetan");
-                        Bs.push("@Model[i].subject_B");
-                        ti_Bs.push("@Model[i].subject_B_tibetan");
+                        contents.push("@Model[i].subject_content.ToString().Trim()");
+                        ti_contents.push("@Model[i].subject_content_tibetan.ToString().Trim()");
+                        As.push("@Model[i].subject_A.ToString().Trim()");
+                        ti_As.push("@Model[i].subject_A_tibetan.ToString().Trim()");
+                        Bs.push("@Model[i].subject_B.ToString().Trim()");
+                        ti_Bs.push("@Model[i].subject_B_tibetan.ToString().Trim()");
+                    </script>
+                    if (Model[i].subject_C == null)
+                    {
+                    <script>
                         Cs.push("@Model[i].subject_C");
                         ti_Cs.push("@Model[i].subject_C_tibetan");
                         Ds.push("@Model[i].subject_D");
                         ti_Ds.push("@Model[i].subject_D_tibetan");
+                    </script>
+                    }
+                    else
+                    {
+                        <script>
+                            Cs.push("@Model[i].subject_C.ToString().Trim()");
+                            ti_Cs.push("@Model[i].subject_C_tibetan.ToString().Trim()");
+                            Ds.push("@Model[i].subject_D.ToString().Trim()");
+                            ti_Ds.push("@Model[i].subject_D_tibetan.ToString().Trim()");
+                        </script>
+                    }
+                    <script>
                         ids.push(@Model[i].subject_id);
-                        imgs.push("@Model[i].subject_img");
+                    </script>
+                    if (Model[i].subject_img != null)
+                    {
+                        <script>
+                            imgs.push("@Model[i].subject_img.ToString().Trim()");
+                         </script>
+                    }
+                    else
+                    { 
+                        <script>
+                            imgs.push("@Model[i].subject_img");
+                        </script>
+                    }
+                    <script>
                         video.push("@Model[i].subject_video");
-                        s_c.push("@Model[i].subject_sound_content");
+                        s_c.push("@Model[i].subject_sound_content_tibetan");
                         s_t.push("@Model[i].subject_sound_trick");
                         isCorrect.push("not");
-                        answer.push("@Model[i].subject_answer");
-                        type.push("@Model[i].subject_type");
+                        answer.push("@Model[i].subject_answer.ToString().Trim()");
+                        type.push("@Model[i].subject_type.ToString().Trim()");
                     </script>
                         <li id="new(@i)" class="newli newli-btn" onclick="ToANewPuzzle(@i)" style="cursor:pointer">@(i + 1)</li>
                 }
@@ -225,6 +254,10 @@
         $("#playvideo").html("<i class='glyphicon glyphicon-facetime-video' style='font-size: 10px;'></i>བརྙན་ཐུང་།");
     }
     $(document).ready(function () {
+        $("#subject_img").attr("src", decodeURI(encodeURI(imgs[0]).replace("%E2%80%AA", "")));
+        $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[0]).replace("%E2%80%AA", "")));
+        $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[0]).replace("%E2%80%AA", "")));
+        $("#video_src").attr("src", decodeURI(encodeURI(video[0]).replace("%E2%80%AA", "")));
         $.ajax({
             type: "post",
             async: false,
@@ -274,7 +307,7 @@
         if (lan != "tibetan") {
             document.getElementById("ShowJudge").innerHTML = "恭喜您，答对啦~";
         } else {
-            document.getElementById("ShowJudge").innerHTML = "Congralutions~You're right!";
+            document.getElementById("ShowJudge").innerHTML = "རྟེན་འབྲེལ་ཞུ།ལན་བཏབ་པ་འགྲིག་གི";
         }
         document.getElementById("new(" + index.toString() + ")").className = "newli newli-true";
     }
@@ -285,7 +318,7 @@
         if (lan != "tibetan") {
             document.getElementById("ShowJudge").innerHTML = "回答错误,正确答案应为:" + answer[index];
         } else {
-            document.getElementById("ShowJudge").innerHTML = "Sorry,you're wrong and the answer is:" + answer[index];
+            document.getElementById("ShowJudge").innerHTML = "ནོར་འདུག,ཡང་དག་པའི་ལན་ནི:" + answer[index];
         }
         document.getElementById("new(" + index.toString() + ")").className = "newli newli-false";
         isCorrect[index] = "no";
@@ -324,10 +357,10 @@
         }
         document.getElementById("subject_index").innerHTML = index;
         document.getElementById("subject_id").innerHTML = ids[index];
-        $("#subject_img").attr("src", imgs[index]);
-        $("#subject_sound_trick").attr("src", s_t[index]);
-        $("#subject_sound_content").attr("src", s_c[index]);
-        $("#video_src").attr("src", video[index]);
+        $("#subject_img").attr("src", decodeURI(encodeURI(imgs[index]).replace("%E2%80%AA", "")));
+        $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[index]).replace("%E2%80%AA", "")));
+        $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[index]).replace("%E2%80%AA", "")));
+        $("#video_src").attr("src", decodeURI(encodeURI(video[index]).replace("%E2%80%AA", "")));
         if (isCorrect[index] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";
@@ -378,10 +411,10 @@
         }
         document.getElementById("subject_index").innerHTML = nowIndex;
         document.getElementById("subject_id").innerHTML = ids[nowIndex];
-        $("#subject_img").attr("src", imgs[nowIndex]);
-        $("#subject_sound_trick").attr("src", s_t[nowIndex]);
-        $("#subject_sound_content").attr("src", s_c[nowIndex]);
-        $("#video_src").attr("src", video[nowIndex]);
+        $("#subject_img").attr("src", decodeURI(encodeURI(imgs[nowIndex]).replace("%E2%80%AA", "")));
+        $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[nowIndex]).replace("%E2%80%AA", "")));
+        $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[nowIndex]).replace("%E2%80%AA", "")));
+        $("#video_src").attr("src", decodeURI(encodeURI(video[nowIndex]).replace("%E2%80%AA", "")));
         if (isCorrect[nowIndex] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";
@@ -432,10 +465,10 @@
         }
         document.getElementById("subject_index").innerHTML = nowIndex;
         document.getElementById("subject_id").innerHTML = ids[nowIndex];
-        $("#subject_img").attr("src", imgs[nowIndex]);
-        $("#subject_sound_trick").attr("src", s_t[nowIndex]);
-        $("#subject_sound_content").attr("src", s_c[nowIndex]);
-        $("#video_src").attr("src", video[nowIndex]);
+        $("#subject_img").attr("src", decodeURI(encodeURI(imgs[nowIndex]).replace("%E2%80%AA", "")));
+        $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[nowIndex]).replace("%E2%80%AA", "")));
+        $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[nowIndex]).replace("%E2%80%AA", "")));
+        $("#video_src").attr("src", decodeURI(encodeURI(video[nowIndex]).replace("%E2%80%AA", "")));
         if (isCorrect[nowIndex] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";
@@ -464,7 +497,7 @@
                     if (lan != "tibetan") {
                         document.getElementById("ShowJudge").innerHTML = "恭喜您，答对啦~";
                     } else {
-                        document.getElementById("ShowJudge").innerHTML = "Congralutions~You're right!";
+                        document.getElementById("ShowJudge").innerHTML = "རྟེན་འབྲེལ་ཞུ།ལན་བཏབ་པ་འགྲིག་གི!";
                     }
                     document.getElementById("new(" + index.toString() + ")").className = "newli newli-true";
                     isCorrect[index] = "yes";
@@ -476,7 +509,7 @@
                     if (lan != "tibetan") {
                         document.getElementById("ShowJudge").innerHTML = "回答错误,正确答案应为:" + answer[index];
                     } else {
-                        document.getElementById("ShowJudge").innerHTML = "Sorry,you're wrong and the answer is:" + answer[index];
+                        document.getElementById("ShowJudge").innerHTML = "ནོར་འདུག,ཡང་དག་པའི་ལན་ནི:" + answer[index];
                     }
                     document.getElementById("new(" + index.toString() + ")").className = "newli newli-false";
                     isCorrect[index] = "no";
