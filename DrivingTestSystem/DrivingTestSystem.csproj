@@ -569,6 +569,16 @@
     <Content Include="DrivingResouces\img\97.jpg" />
     <Content Include="DrivingResouces\img\98.jpg" />
     <Content Include="DrivingResouces\img\99.jpg" />
+    <Content Include="DrivingResouces\video\1.gif" />
+    <Content Include="DrivingResouces\video\10.gif" />
+    <Content Include="DrivingResouces\video\2.gif" />
+    <Content Include="DrivingResouces\video\3.gif" />
+    <Content Include="DrivingResouces\video\4.gif" />
+    <Content Include="DrivingResouces\video\5.gif" />
+    <Content Include="DrivingResouces\video\6.gif" />
+    <Content Include="DrivingResouces\video\7.gif" />
+    <Content Include="DrivingResouces\video\8.gif" />
+    <Content Include="DrivingResouces\video\9.gif" />
     <Content Include="Global.asax" />
     <Content Include="Resources\css\style.css.map" />
     <Content Include="Resources\css\video-js.css" />
@@ -678,20 +688,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DrivingResouces\.DS_Store" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DrivingResouces\video\1.webm" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DrivingResouces\video\10.webm" />
-    <Content Include="DrivingResouces\video\2.webm" />
-    <Content Include="DrivingResouces\video\3.webm" />
-    <Content Include="DrivingResouces\video\4.webm" />
-    <Content Include="DrivingResouces\video\5.webm" />
-    <Content Include="DrivingResouces\video\6.webm" />
-    <Content Include="DrivingResouces\video\7.webm" />
-    <Content Include="DrivingResouces\video\8.webm" />
-    <Content Include="DrivingResouces\video\9.webm" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

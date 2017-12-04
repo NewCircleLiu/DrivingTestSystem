@@ -58,16 +58,16 @@
         <fieldset class="layui-elem-field" style="min-height: 430px;position: relative;margin-left:10px;max-width:100%">
             <legend>考试题目</legend>
             <div class="layui-field-box" style="text-align:left">
-                <p class="question" id="question">1、@Model[0].subject_content？</p>
-                <p class="answer-one" id="answer-one">A @Model[0].subject_A</p>
-                <p class="answer-two" id="answer-two"">B @Model[0].subject_B</p>
-                <p class="answer-there" id="answer-three">C @Model[0].subject_C</p>
-                <p class="answer-four" id="answer-four">D @Model[0].subject_D</p>
+                <p class="question" id="question" style="font-weight:bold;font-size:18px">1、@Model[0].subject_content？</p>
+                <p class="answer-one" id="answer-one" style="font-weight:bold;font-size:18px">A @Model[0].subject_A</p>
+                <p class="answer-two" id="answer-two" style="font-weight:bold;font-size:18px">B @Model[0].subject_B</p>
+                <p class="answer-there" id="answer-three" style="font-weight:bold;font-size:18px">C @Model[0].subject_C</p>
+                <p class="answer-four" id="answer-four" style="font-weight:bold;font-size:18px">D @Model[0].subject_D</p>
                 <p class="answer-judge" style="width: 50%; display: none; text-align:center" id="ShowJudge"></p>
                 <img src="@Model[0].subject_img" class="que-img pc-que-img" id="subject_img" style="margin:0;margin-right:20px;margin-bottom:40px">
                 <div style="position: absolute;bottom: 2%;width: 100%;margin-bottom:10px">
                     <div style="float: left;" class="answer-test">
-                        <button class="layui-btn layui-btn-normal play-audio" id="playcontent"><i class="glyphicon glyphicon-volume-up" style="font-size: 10px;"></i>音频</button>
+                        <button class="layui-btn layui-btn-normal play-audio" id="playcontent" style="font-size:20px"><i class="glyphicon glyphicon-volume-up" style="font-size: 14px;"></i>&nbsp;音频</button>
                         <audio src="" class="answer-audio" style="display: none;" id="subject_sound_trick">
                             您的浏览器不支持 audio 标签。
                         </audio>
@@ -75,8 +75,7 @@
                             您的浏览器不支持 audio 标签。
                         </audio>
                         <!--<audio src="/Public/video/right.wav" id="turename" style="display: none;"></audio>-->
-                        <button class="layui-btn layui-btn-warm detailsbtn" data-hide="yes" id="playtrick"><i class="glyphicon glyphicon-star" style="font-size: 10px;"></i> 答题技巧</button>
-                        <button data-toggle="modal" data-target="#myModal" class="layui-btn layui-btn-warm layer-video" id="playvideo" ><i class="glyphicon glyphicon-facetime-video" style="font-size: 10px;"></i>播放视频</button>
+                        <button class="layui-btn layui-btn-warm detailsbtn" data-hide="yes" id="playtrick" style="font-size:20px"><i class="glyphicon glyphicon-star" style="font-size: 14px;"></i>&nbsp;答题技巧</button>
                     </div>
                     <div style="float: right;margin-right: 5%" id="AnswerButton">
                         <p id="subject_id" style="display:none">@Model[0].subject_id</p>
@@ -93,8 +92,7 @@
             <div class="right-footer-btn" style="margin-top:20px" >
                 <button class="layui-btn upper" onclick="toPastPuzzle()" id="upper">上一题</button>
                 <button class="layui-btn Next" onclick="toNextPuzzle(@ViewBag.len)" id="next">下一题</button>
-                <button class="layui-btn layui-btn-warm goover" style="float: right" onclick="showYourScore();" id="handin"><i class="layui-icon" style="font-size: 20px;"></i> 交卷</button>
-                <button class="layui-btn layui-btn-warm Refresh" style="float: right;display: none;" onclick="location.reload()"><i class="layui-icon" style="font-size: 20px;">ဂ</i> 重做</button>
+                <button class="layui-btn layui-btn-warm goover" style="float: right;font-size:20px" onclick="showYourScore();" id="handin"><i class="glyphicon glyphicon-saved" style="font-size: 14px;"></i>&nbsp;交卷</button>
             </div>
         </div>
     </div>
@@ -107,7 +105,7 @@
                 @for (int i = 0; i < ViewBag.len; i++)
                 {
                     <script>
-                        contents.push("@Model[i].subject_content.ToString().Trim()");
+                        contents.push("@Model[i].subject_content.ToString().Trim().Replace("\n","").Replace("\r","")");
                         ti_contents.push("@Model[i].subject_content_tibetan.ToString().Trim()");
                         As.push("@Model[i].subject_A.ToString().Trim()");
                         ti_As.push("@Model[i].subject_A_tibetan.ToString().Trim()");
@@ -181,7 +179,12 @@
         $(".user-category").text("科目一");
         $("#next").text("下一题");
         $("#upper").text("上一题");
-        if (type[0] != "C") {
+        if (type[0] == "C") {
+            document.getElementById("answer-three").innerHTML = "C " + Cs[0];
+            document.getElementById("answer-four").innerHTML = "D " + Ds[0];
+            $("#C").show();
+            $("#D").show();
+        } else {
             document.getElementById("answer-three").innerHTML = "<br/>";
             document.getElementById("answer-four").innerHTML = "<br/>";
             $("#C").hide();
@@ -212,17 +215,18 @@
 交卷རྒྱུགས་ཤོག་སྤྲོད་པ།
 视频བརྙན་ཐུང་།语音སྐད།技巧མཐུ་རྩལ།
 */
-        $("#playcontent").html("<i class='glyphicon glyphicon-volume-up' style='font-size: 10px;'></i>སྐད།");
-        $("#playtrick").html("<i class='glyphicon glyphicon-star' style='font-size: 10px;'></i>མཐུ་རྩལ།");
-        $("#playvideo").html("<i class='glyphicon glyphicon-facetime-video' style='font-size: 10px;'></i>བརྙན་ཐུང་།");
-        $("#handin").html("<i class='glyphicon glyphicon-saved' style='font-size: 20px;'></i> རྒྱུགས་ཤོག་");
+        $("#playcontent").html("<i class='glyphicon glyphicon-volume-up' style='font-size: 14px;'></i>སྐད།");
+        $("#playtrick").html("<i class='glyphicon glyphicon-star' style='font-size: 14px;'></i>མཐུ་རྩལ།");
+        $("#handin").html("<i class='glyphicon glyphicon-saved' style='font-size: 14px;'></i> རྒྱུགས་ཤོག་");
     }
     $(document).ready(function () {
         setTimeout("nowTime++", 1000);
         $("#subject_img").attr("src", decodeURI(encodeURI(imgs[0]).replace("%E2%80%AA", "")));
         $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[0]).replace("%E2%80%AA", "")));
         $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[0]).replace("%E2%80%AA", "")));
-        $("#video_src").attr("src", decodeURI(encodeURI(video[0]).replace("%E2%80%AA", "")));
+        if (video[0]!=""){
+            $("#subject_img").attr("src", decodeURI(encodeURI(video[0]).replace("%E2%80%AA", "")));
+        }
         $.ajax({
             type: "post",
             async: false,
@@ -325,7 +329,9 @@
         $("#subject_img").attr("src", decodeURI(encodeURI(imgs[index]).replace("%E2%80%AA", "")));
         $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[index]).replace("%E2%80%AA", "")));
         $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[index]).replace("%E2%80%AA", "")));
-        $("#video_src").attr("src", decodeURI(encodeURI(video[index]).replace("%E2%80%AA", "")));
+        if (video[index]!="") {
+            $("#subject_img").attr("src", decodeURI(encodeURI(video[index]).replace("%E2%80%AA", "")));
+        }
         if (isCorrect[index] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";
@@ -379,7 +385,9 @@
         $("#subject_img").attr("src", decodeURI(encodeURI(imgs[nowIndex]).replace("%E2%80%AA", "")));
         $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[nowIndex]).replace("%E2%80%AA", "")));
         $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[nowIndex]).replace("%E2%80%AA", "")));
-        $("#video_src").attr("src", decodeURI(encodeURI(video[nowIndex]).replace("%E2%80%AA", "")));
+        if (video[nowIndex] != "") {
+            $("#subject_img").attr("src", decodeURI(encodeURI(video[nowIndex]).replace("%E2%80%AA", "")));
+        }
         if (isCorrect[nowIndex] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";
@@ -433,7 +441,9 @@
         $("#subject_img").attr("src", decodeURI(encodeURI(imgs[nowIndex]).replace("%E2%80%AA", "")));
         $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[nowIndex]).replace("%E2%80%AA", "")));
         $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[nowIndex]).replace("%E2%80%AA", "")));
-        $("#video_src").attr("src", decodeURI(encodeURI(video[nowIndex]).replace("%E2%80%AA", "")));
+        if (video[nowIndex] != "") {
+            $("#subject_img").attr("src", decodeURI(encodeURI(video[nowIndex]).replace("%E2%80%AA", "")));
+        }
         if (isCorrect[nowIndex] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";

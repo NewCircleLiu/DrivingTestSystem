@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="~/Resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/Resources/css/animate.css">
     <link rel="stylesheet" href="~/Resources/css/style.css">
+    <link rel="stylesheet" href="~/Resources/css/style.css">
+    <link rel="stylesheet" href="~/Resources/css/layui.css">
 </head>
 <body class="style-2">
     <nav class="navbar navbar-default" role="navigation" id="top_bar" style="margin-top: 15px; color: slategrey;">
@@ -37,36 +39,11 @@
             <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-2" style="height: 1px; padding-bottom: 10px">
 
                 <ul class="nav navbar-nav navbar-left">
-                    <li onclick="changeToCh()" style="padding: 15px; padding-right: 0px; cursor: pointer">汉语|</li>
+                    <li onclick="changeToCh()" style="padding: 15px; padding-right: 0px; cursor: pointer">汉语&nbsp;|&nbsp;</li>
                     <li onclick="changeToTibetan()" style="padding: 15px; padding-left: 0px; cursor: pointer">བོད་སྐད།</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #ffffff" id="daily">日常练习<strong class="caret"></strong></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="~/Practice/SubjectOnePage/" id="daily_one">科目一</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="~/Practice/SubjectFourPage/" id="daily_four">科目四</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #ffffff" id="exam">模拟考试<strong class="caret"></strong></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="~/Exam/OnePuzzle/" id="exam_one">科目一</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="~/Exam/FourPuzzle/" id="exam_four">科目四</a>
-                            </li>
-                        </ul>
-                    </li>
+                    <li><a class="btn btn-primary layui-btn-radius" style="height:35px;color:white;display:block;padding-top:8px;padding-bottom:8px;display:none" id="logout_button" href="/UserLogin/Logout">登出</a></li>
                 </ul>
             </div>
             <div class="clearfix"></div>
@@ -104,9 +81,6 @@
                             </table>
                         </div>
                         <div class="form-group">
-                            <p id="isRegistered">还没注册? <a href="#" id="RegisterNow">现在注册</a> | <a href="#" id="ForgetPass">忘记密码 ?</a></p>
-                        </div>
-                        <div class="form-group">
                             <input type="button" id="login_button" value="登录" class="btn btn-primary" onclick="login();">
                         </div>
                     </form>
@@ -114,19 +88,44 @@
                 }
                 else
                 {
+                    <script>
+                        $("#logout_button").show();
+                    </script>
                     <!--PersonalCenter-->
                     <form action="#" class="fh5co-form animate-box" data-animate-effect="fadeInLeft">
-                        <h2 id="personal_center">个人中心</h2>
-                        <div class="form-group">
-                            <label>@u.user_account</label>
+                        <div class="row clearfix">
+                            <div class="col-md-12 column" style="margin-bottom: 20px">
+                                <fieldset class="layui-elem-field" style="margin-bottom: 20px;margin-top:30px">
+                                    <legend id="daily">日常练习</legend>
+                                    <div class="layui-field-box category" style="padding-bottom:40px;text-align:center;font-size:18px">
+                                        <div class="row clearfix">
+                                            <div class="col-md-6 column">
+                                                <a id="daily_one" style="text-decoration:none;cursor:pointer" href="/Practice/SubjectOnePage">科目一</a>
+                                            </div>
+                                            <div class="col-md-6 column">
+                                                <a id="daily_four" style="text-decoration:none;cursor:pointer" href="/Practice/SubjectFouPage">科目四</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label id="photo">照片：</label>
-                            <img src="~/Resources/img/user.jpg" class="user-img" style="max-width: 150px; max-height: 150px; margin-right: 20px; margin-left: 40px; margin-bottom: 0; display: inline-block; box-sizing: border-box; left: 15%;">
-                        </div>
-                        <div class="form-group">
-                            <a href="@Url.Content("~/UserLogin/Logout/")">
-                                <input id="logout_button" type="button" value="登出" class="btn btn-primary"></a>
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
+                                <fieldset class="layui-elem-field" style="margin-top:20px;margin-bottom:30px">
+                                    <legend id="exam">模拟考试</legend>
+                                    <div class="layui-field-box category" style="padding-bottom:40px;text-align:center;font-size:18px">
+                                        <div class="row clearfix">
+                                            <div class="col-md-6 column">
+                                                <a id="exam_one" style="text-decoration:none;cursor:pointer" href="/Exam/OnePuzzle">科目一</a>
+                                            </div>
+                                            <div class="col-md-6 column">
+                                                <a id="exam_four" style="text-decoration:none;cursor:pointer" href="/Exam/FourPuzzle">科目四
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
                         </div>
                     </form>
                     <!--End PersonalCenter-->
@@ -135,7 +134,7 @@
         </div>
         <div class="row" style="padding-top: 60px; clear: both;">
             <div class="col-md-12 text-center">
-                <p><small>Copyright &copy;xxxx版权所有.</small></p>
+                <p><small style="font-size:100%">Copyright &copy; 青海黄南官邸驾校版权所有.</small></p>
             </div>
         </div>
     </div>
@@ -144,7 +143,7 @@
 </html>
 <script type="text/javascript">
     function Ch() {
-        $("#logout_button").attr("value","登出");
+        $("#logout_button").text("登出");
         $("#photo").text("照片");
         $("#personal_center").text("个人中心");
         $("#login_button").attr("value", "登入");
@@ -166,7 +165,7 @@
         $("#daily").text("日常练习");
     }
     function tibetan() {
-        $("#logout_button").attr("value", "ཕྱིར་འབུད།"); //藏语的登出
+        $("#logout_button").text("ཕྱིར་འབུད།"); //藏语的登出
         $("#photo").text("འདྲ་པར།");
         $("#personal_center").text("མི་སྒེར་གྱི་ལྟེ་གནས");
         $("#login_button").attr("value", "ཐོ་འཇུག");

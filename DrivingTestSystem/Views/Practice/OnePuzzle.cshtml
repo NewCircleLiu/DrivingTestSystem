@@ -19,29 +19,32 @@
     }
     switch (Model[0].subject_ctype)
     {
-        case "basic":
-            ViewBag.title = "基础篇";
+        case "movie":
+            ViewBag.title = "动画";
             break;
-        case "driving":
-            ViewBag.title = "驾驶技巧";
-            break;
-        case "sign":
-            ViewBag.title = "交通标志";
-            break;
-        case "ground":
+        case "line":
             ViewBag.title = "地面标线";
             break;
         case "signal":
             ViewBag.title = "交通信号";
             break;
-        case "common1":
-            ViewBag.title = "交通常识(1)";
+        case "key":
+            ViewBag.title = "关键字";
             break;
-        case "common2":
-            ViewBag.title = "交通常识(2)";
+        case "speed":
+            ViewBag.title = "速度问题";
+            break;
+        case "punish":
+            ViewBag.title = "罚款判刑类";
+            break;
+        case "light":
+            ViewBag.title = "信号灯";
+            break;
+        case "first":
+            ViewBag.title = "先行原则";
             break;
         default:
-            ViewBag.title = "交通常识(3)";
+            ViewBag.title = "安全行驶";
             break;
     }
 }
@@ -95,19 +98,17 @@
                 <p class="answer-there" id="answer-three"  style="font-weight:bold;font-size:18px">C @Model[0].subject_C</p>
                 <p class="answer-four" id="answer-four"  style="font-weight:bold;font-size:18px">D @Model[0].subject_D</p>
                 <p class="answer-judge" style="width: 50%; display: none; text-align:center" id="ShowJudge"></p>
-                <img src="@Model[0].subject_img" class="que-img pc-que-img" id="subject_img">
+                <img src="@Model[0].subject_img" class="que-img pc-que-img" id="subject_img" style="margin:0;margin-right:20px;margin-bottom:40px">
                 <div style="position: absolute;bottom: 2%;width: 100%;margin-bottom:10px">
                     <div style="float: left;" class="answer-test">
-                        <button class="layui-btn layui-btn-normal play-audio" id="playcontent"><i class="glyphicon glyphicon-volume-up" style="font-size: 10px;"></i>音频</button>
+                        <button class="layui-btn layui-btn-normal play-audio" id="playcontent" style="font-size:20px"><i class="glyphicon glyphicon-volume-up" style="font-size: 14px;"></i>&nbsp;音频</button>
                         <audio src="" class="answer-audio" style="display: none;" id="subject_sound_trick">
                             您的浏览器不支持 audio 标签。
                         </audio>
                         <audio src="" class="answer-audio" style="display: none;" id="subject_sound_content">
                             您的浏览器不支持 audio 标签。
                         </audio>
-                        <!--<audio src="/Public/video/right.wav" id="turename" style="display: none;"></audio>-->
-                        <button class="layui-btn layui-btn-warm detailsbtn" data-hide="yes" id="playtrick"><i class="glyphicon glyphicon-star" style="font-size: 10px;"></i> 答题技巧</button>
-                        <button data-toggle="modal" data-target="#myModal" class="layui-btn layui-btn-warm layer-video" id="playvideo" ><i class="glyphicon glyphicon-facetime-video" style="font-size: 10px;"></i>播放视频</button>
+                        <button class="layui-btn layui-btn-warm detailsbtn" data-hide="yes" id="playtrick" style="font-size:20px"><i class="glyphicon glyphicon-star" style="font-size: 14px;"></i>&nbsp;答题技巧</button>
                     </div>
                     <div style="float: right;margin-right: 5%" id="AnswerButton">
                         <p id="subject_id" style="display:none">@Model[0].subject_id</p>
@@ -124,7 +125,7 @@
             <div class="right-footer-btn" style="margin-top:20px" >
                 <button class="layui-btn upper" onclick="toPastPuzzle()" id="upper">上一题</button>
                 <button class="layui-btn Next" onclick="toNextPuzzle(@ViewBag.len)" id="next">下一题</button>
-                <button class="layui-btn layui-btn-warm goover" style="float: right;display:none"><i class="layui-icon" style="font-size: 20px;"></i> 交卷</button>
+                <button class="layui-btn layui-btn-warm goover" style="float: right;display:none"><i class="layui-icon" style="font-size: 20px;" ></i> 交卷</button>
                 <button class="layui-btn layui-btn-warm Refresh" style="float: right;display: none;" onclick="location.reload()"><i class="layui-icon" style="font-size: 20px;">ဂ</i> 重做</button>
             </div>
         </div>
@@ -138,7 +139,7 @@
                 @for (int i = 0; i < ViewBag.len; i++)
                 {
                     <script>
-                        contents.push("@Model[i].subject_content.ToString().Trim()");
+                        contents.push("@Model[i].subject_content.ToString().Trim().Replace("\n","").Replace("\r","")");
                         ti_contents.push("@Model[i].subject_content_tibetan.ToString().Trim()");
                         As.push("@Model[i].subject_A.ToString().Trim()");
                         ti_As.push("@Model[i].subject_A_tibetan.ToString().Trim()");
@@ -224,12 +225,11 @@
         }
     }
     /*
-一གཅིག
-四བཞི
-考试རྒྱུགས་ལེན་པ།
-交卷རྒྱུགས་ཤོག་སྤྲོད་པ།
-视频བརྙན་ཐུང་།语音སྐད།技巧མཐུ་རྩལ།
-
+        一གཅིག
+        四བཞི
+        考试རྒྱུགས་ལེན་པ།
+        交卷རྒྱུགས་ཤོག་སྤྲོད་པ།
+        视频བརྙན་ཐུང་།语音སྐད།技巧མཐུ་རྩལ།
     */
     function tibetan_p1() {
         $(".user-category").text("གཅིག");
@@ -249,15 +249,17 @@
             $("#C").hide();
             $("#D").hide();
         }
-        $("#playcontent").html("<i class='glyphicon glyphicon-volume-up' style='font-size: 10px;'></i>སྐད།");
-        $("#playtrick").html("<i class='glyphicon glyphicon-star' style='font-size: 10px;'></i>མཐུ་རྩལ།");
-        $("#playvideo").html("<i class='glyphicon glyphicon-facetime-video' style='font-size: 10px;'></i>བརྙན་ཐུང་།");
+        $("#playcontent").html("<i class='glyphicon glyphicon-volume-up' style='font-size: 14px;'></i>&nbsp;སྐད།");
+        $("#playtrick").html("<i class='glyphicon glyphicon-star' style='font-size: 14px;'></i>&nbsp;མཐུ་རྩལ།");
     }
     $(document).ready(function () {
         $("#subject_img").attr("src", decodeURI(encodeURI(imgs[0]).replace("%E2%80%AA", "")));
         $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[0]).replace("%E2%80%AA", "")));
         $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[0]).replace("%E2%80%AA", "")));
-        $("#video_src").attr("src", decodeURI(encodeURI(video[0]).replace("%E2%80%AA", "")));
+        if (video[0] != "") {
+            
+            $("#subject_img").attr("src", decodeURI(encodeURI(video[0]).replace("%E2%80%AA", "")));
+        }
         $.ajax({
             type: "post",
             async: false,
@@ -360,7 +362,9 @@
         $("#subject_img").attr("src", decodeURI(encodeURI(imgs[index]).replace("%E2%80%AA", "")));
         $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[index]).replace("%E2%80%AA", "")));
         $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[index]).replace("%E2%80%AA", "")));
-        $("#video_src").attr("src", decodeURI(encodeURI(video[index]).replace("%E2%80%AA", "")));
+        if (video[index] != "") {
+            $("#subject_img").attr("src", decodeURI(encodeURI(video[index]).replace("%E2%80%AA", "")));
+        }
         if (isCorrect[index] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";
@@ -414,7 +418,9 @@
         $("#subject_img").attr("src", decodeURI(encodeURI(imgs[nowIndex]).replace("%E2%80%AA", "")));
         $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[nowIndex]).replace("%E2%80%AA", "")));
         $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[nowIndex]).replace("%E2%80%AA", "")));
-        $("#video_src").attr("src", decodeURI(encodeURI(video[nowIndex]).replace("%E2%80%AA", "")));
+        if (video[nowIndex]!="") {
+            $("#subject_img").attr("src", decodeURI(encodeURI(video[nowIndex]).replace("%E2%80%AA", "")));
+        }
         if (isCorrect[nowIndex] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";
@@ -468,7 +474,9 @@
         $("#subject_img").attr("src", decodeURI(encodeURI(imgs[nowIndex]).replace("%E2%80%AA", "")));
         $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[nowIndex]).replace("%E2%80%AA", "")));
         $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[nowIndex]).replace("%E2%80%AA", "")));
-        $("#video_src").attr("src", decodeURI(encodeURI(video[nowIndex]).replace("%E2%80%AA", "")));
+        if (video[nowIndex]!="") {
+            $("#subject_img").attr("src", decodeURI(encodeURI(video[nowIndex]).replace("%E2%80%AA", "")));
+        }
         if (isCorrect[nowIndex] == "not") {
             document.getElementById("AnswerButton").style.display = 'block';
             document.getElementById("ShowJudge").style.display = "none";
