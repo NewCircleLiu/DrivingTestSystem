@@ -372,7 +372,11 @@
     <Content Include="DrivingResouces\audio\B162.mp3" />
     <Content Include="DrivingResouces\audio\B163.mp3" />
     <Content Include="DrivingResouces\audio\B164.mp3" />
+    <Content Include="DrivingResouces\audio\B165.mp3" />
+    <Content Include="DrivingResouces\audio\B166.mp3" />
+    <Content Include="DrivingResouces\audio\B167.mp3" />
     <Content Include="DrivingResouces\audio\B17.mp3" />
+    <Content Include="DrivingResouces\audio\B173.mp3" />
     <Content Include="DrivingResouces\audio\B18.mp3" />
     <Content Include="DrivingResouces\audio\B19.mp3" />
     <Content Include="DrivingResouces\audio\B2.mp3" />
@@ -580,7 +584,7 @@
     <Content Include="DrivingResouces\trick\C\10_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\11_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\12_03_mixdown.wav" />
-    <Content Include="DrivingResouces\trick\C\13 03_mixdown.wav" />
+    <Content Include="DrivingResouces\trick\C\13_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\14_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\15_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\16_03_mixdown.wav" />
@@ -605,14 +609,14 @@
     <Content Include="DrivingResouces\trick\C\32_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\33_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\34_03_mixdown.wav" />
-    <Content Include="DrivingResouces\trick\C\35_mixdown.wav" />
+    <Content Include="DrivingResouces\trick\C\35_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\36_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\37_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\38_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\39_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\40_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\41_03_mixdown.wav" />
-    <Content Include="DrivingResouces\trick\C\42 03_mixdown.wav" />
+    <Content Include="DrivingResouces\trick\C\42_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\43_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\44_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\45_03_mixdown.wav" />
@@ -621,7 +625,7 @@
     <Content Include="DrivingResouces\trick\C\48_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\49_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\4_03_mixdown.wav" />
-    <Content Include="DrivingResouces\trick\C\50 03_mixdown.wav" />
+    <Content Include="DrivingResouces\trick\C\50_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\51_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\52_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\53_03_mixdown.wav" />
@@ -631,9 +635,10 @@
     <Content Include="DrivingResouces\trick\C\57_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\58_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\59 03_mixdown.wav" />
+    <Content Include="DrivingResouces\trick\C\59_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\5_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\60_03_mixdown.wav" />
-    <Content Include="DrivingResouces\trick\C\61 03_mixdown.wav" />
+    <Content Include="DrivingResouces\trick\C\61_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\62_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\63_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\64_03_mixdown.wav" />
@@ -655,7 +660,7 @@
     <Content Include="DrivingResouces\trick\C\7_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\80_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\81_03_mixdown.wav" />
-    <Content Include="DrivingResouces\trick\C\82 03_mixdown.wav" />
+    <Content Include="DrivingResouces\trick\C\82_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\83_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\84_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\85_03_mixdown.wav" />
@@ -668,6 +673,11 @@
     <Content Include="DrivingResouces\trick\C\91_03_mixdown.mp3" />
     <Content Include="DrivingResouces\trick\C\92_03_mixdown.mp3" />
     <Content Include="DrivingResouces\trick\C\93_03_mixdown.mp3" />
+    <Content Include="DrivingResouces\trick\C\94_03_mixdown.mp3" />
+    <Content Include="DrivingResouces\trick\C\95_03_mixdown.mp3" />
+    <Content Include="DrivingResouces\trick\C\96_03_mixdown.mp3" />
+    <Content Include="DrivingResouces\trick\J\15.mp3" />
+    <Content Include="DrivingResouces\trick\J\41.mp3" />
     <Content Include="DrivingResouces\trick\J\65.mp3" />
     <Content Include="DrivingResouces\trick\C\9_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\J\1.wav" />
@@ -676,7 +686,6 @@
     <Content Include="DrivingResouces\trick\J\12.wav" />
     <Content Include="DrivingResouces\trick\J\13.wav" />
     <Content Include="DrivingResouces\trick\J\14.wav" />
-    <Content Include="DrivingResouces\trick\J\15.wav" />
     <Content Include="DrivingResouces\trick\J\16.wav" />
     <Content Include="DrivingResouces\trick\J\17.wav" />
     <Content Include="DrivingResouces\trick\J\18.wav" />
@@ -704,7 +713,6 @@
     <Content Include="DrivingResouces\trick\J\38.wav" />
     <Content Include="DrivingResouces\trick\J\39.wav" />
     <Content Include="DrivingResouces\trick\J\40.wav" />
-    <Content Include="DrivingResouces\trick\J\41.wav" />
     <Content Include="DrivingResouces\trick\J\42.wav" />
     <Content Include="DrivingResouces\trick\J\43.wav" />
     <Content Include="DrivingResouces\trick\J\44.wav" />
@@ -734,7 +742,12 @@
     <Content Include="DrivingResouces\trick\J\66.mp3" />
     <Content Include="DrivingResouces\trick\J\67.mp3" />
     <Content Include="DrivingResouces\trick\J\68.mp3" />
+    <Content Include="DrivingResouces\trick\J\69.wav" />
     <Content Include="DrivingResouces\trick\J\7.wav" />
+    <Content Include="DrivingResouces\trick\J\70.wav" />
+    <Content Include="DrivingResouces\trick\J\71.mp3" />
+    <Content Include="DrivingResouces\trick\J\72.mp3" />
+    <Content Include="DrivingResouces\trick\J\73.mp3" />
     <Content Include="DrivingResouces\trick\J\8.wav" />
     <Content Include="DrivingResouces\trick\J\9.wav" />
     <Content Include="DrivingResouces\video\1.gif" />
@@ -853,9 +866,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Exam\OnePuzzle.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DrivingResouces\.DS_Store" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
