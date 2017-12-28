@@ -30,26 +30,70 @@
             </a>
         </div>
 
+        <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
+            <a href="~/Practice/OnePuzzle?ctype=speed">
+                <img src="~/Resources/img/交通常识3.png" class="cate-img">
+                <p id="speed">速度类问题</p>
+            </a>
+        </div>
+
+       <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
+            <a href="~/Practice/OnePuzzle?ctype=punish">
+                <img src="~/Resources/img/交警罚没.png" class="cate-img">
+                <p id="punish">罚款判刑类</p>
+            </a>
+        </div>
+
+        <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
+            <a href="~/Practice/OnePuzzle?ctype=light">
+                <img src="~/Resources/img/灯光.png" class="cate-img">
+                <p id="light">信号灯</p>
+            </a>
+        </div>
+
+        <div class="col-md-6 col-sm-4 text-center fh5co-feature feature-box">
+            <a href="~/Practice/OnePuzzle?ctype=first">
+                <img src="~/Resources/img/道路标志.png" class="cate-img">
+                <p id="first">先行原则</p>
+            </a>
+        </div>
+
+       <div class="col-md-6 col-sm-4 text-center fh5co-feature feature-box">
+            <a href="~/Practice/OnePuzzle?ctype=safe">
+                <img src="~/Resources/img/驾校.png" class="cate-img" style="padding-bottom: 36px">
+                <p id="safe">安全行驶</p>
+            </a>
+        </div>
+
         <div class="col-md-12 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/FourPuzzle?ctype=signal">
                 <img src="~/Resources/img/交通信号.png" class="cate-img" style="padding-bottom: 80px">
                 <p id="signal">交通信号</p>
             </a>
         </div>
+
     </div>
 </div>
 <script>
     function tibetan_ps4() {
-        $("#signal").text("བརྡ་རྟགས།");
-        $("#ground").text("ཐང་གེ་ཐིག");
-        $("#key").text("གནད་འགག་ཡི་གེ");
+        $("#safe").text("བདེ་འཇགས་གནས་བབ།");
+        $("#first").text("སྔོན་དུ་འགྲོ་བའི་རིགས།");
+        $("#light").text("བརྡ་རྟགས་གློག་གིི་རིགས།");
+        $("#punish").text("ཆད་པ་ཡི་རིགས།");
+        $("#speed").text("འགྱོགས ་ཚད་རིགས།");
+        $("#ground").text("ཐང་གི་རྟགས།");
         $("#movie").text("འགུལ་རི");
+        $("#key").text("གནད་འགག་ཡི་གེ");
     }
     function Ch_ps4() {
-        $("#signal").text("信号");
-        $("#ground").text("地面标线");
+        $("#safe").text("安全行驶");
+        $("#first").text("先行规则");
+        $("#light").text("信号灯");
+        $("#punish").text("罚款判刑类");
+        $("#speed").text("速度类问题");
+        $("#ground").text("地面标识");
+        $("#movie").text("动画");
         $("#key").text("关键字");
-        $("#movie").text("动画题");
     }
     $(document).ready(function () {
         $.ajax({

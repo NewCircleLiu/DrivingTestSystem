@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DrivingTestSystem.Utils;
 using DrivingTestSystem.Models.Subject;
 
 namespace DrivingTestSystem.Controllers
@@ -59,55 +60,39 @@ namespace DrivingTestSystem.Controllers
             string lan = (string)Session["language"];
             return Content(lan);
         }
+        [UserAuthorize]
         public ActionResult SubjectOnePage()
         {
             return View();
         }
+        [UserAuthorize]
         public ActionResult SubjectFourPage()
         {
             return View();
         }
+        [UserAuthorize]
         [HttpGet]
         public ActionResult OnePuzzle(string ctype)
         {
             string lan = (string)Session["language"];
             Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype.Contains(ctype)).ToArray();
-            Subject[] sArray = getRandomList(sOld);
-            if (Session["User"] == null)
-            {
-                ViewBag.len = sArray.Length > 4 ? 4 : sArray.Length; //如果是游客，最多给四个题
-                ViewBag.language = lan;
-                ViewBag.nowIndex = 0;
-                return View(sArray);
-            }
-            else
-            {
-                ViewBag.len = sArray.Length;
-                ViewBag.nowIndex = 0;
-                ViewBag.language = lan;
-                return View(sArray);
-            }
+            //Subject[] sArray = getRandomList(sOld);
+            ViewBag.len = sOld.Length;
+            ViewBag.nowIndex = 0;
+            ViewBag.language = lan;
+            return View(sOld);
         }
+        [UserAuthorize]
         [HttpGet]
         public ActionResult FourPuzzle(string ctype)
         {
             string lan = (string)Session["language"];
             Subject[] sOld = sc.SubjectList.Where(s => s.subject_ctype.Contains(ctype)).ToArray();
-            Subject[] sArray = getRandomList(sOld);
-            if (Session["User"] == null)
-            {
-                ViewBag.len = sArray.Length > 4 ? 4 : sArray.Length; //如果是游客，最多给四个题
-                ViewBag.language = lan;
-                ViewBag.nowIndex = 0;
-                return View(sArray);
-            }
-            else
-            {
-                ViewBag.len = sArray.Length;
-                ViewBag.nowIndex = 0;
-                ViewBag.language = lan;
-                return View(sArray);
-            }
+            //Subject[] sArray = getRandomList(sOld);
+            ViewBag.len = sOld.Length;
+            ViewBag.nowIndex = 0;
+            ViewBag.language = lan;
+            return View(sOld);
         }
         [HttpPost]
         public JsonResult CheckAnswer(string user_answer, int subject_id)

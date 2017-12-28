@@ -122,7 +122,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\BackController.cs" />
     <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\PracticeController.cs" />
     <Compile Include="Controllers\UserLoginController.cs" />
@@ -205,6 +204,7 @@
     <Content Include="DrivingResouces\audio\A145.mp3" />
     <Content Include="DrivingResouces\audio\A146.mp3" />
     <Content Include="DrivingResouces\audio\A147.mp3" />
+    <Content Include="DrivingResouces\audio\A147.wav" />
     <Content Include="DrivingResouces\audio\A148.mp3" />
     <Content Include="DrivingResouces\audio\A15.mp3" />
     <Content Include="DrivingResouces\audio\A16.mp3" />
@@ -454,6 +454,7 @@
     <Content Include="DrivingResouces\audio\B85.mp3" />
     <Content Include="DrivingResouces\audio\B86.mp3" />
     <Content Include="DrivingResouces\audio\B87.mp3" />
+    <Content Include="DrivingResouces\audio\B88.mp3" />
     <Content Include="DrivingResouces\audio\B89.mp3" />
     <Content Include="DrivingResouces\audio\B9.mp3" />
     <Content Include="DrivingResouces\audio\B90.mp3" />
@@ -474,6 +475,7 @@
     <Content Include="DrivingResouces\audio\C06.mp3" />
     <Content Include="DrivingResouces\audio\C07.mp3" />
     <Content Include="DrivingResouces\audio\C08.mp3" />
+    <Content Include="DrivingResouces\audio\C09.mp3" />
     <Content Include="DrivingResouces\img\1.jpg" />
     <Content Include="DrivingResouces\img\10.jpg" />
     <Content Include="DrivingResouces\img\100.jpg" />
@@ -603,7 +605,7 @@
     <Content Include="DrivingResouces\trick\C\28_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\29_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\2_03_mixdown.wav" />
-    <Content Include="DrivingResouces\trick\C\3 _03_mixdown.wav" />
+    <Content Include="DrivingResouces\trick\C\3_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\30_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\31_03_mixdown.wav" />
     <Content Include="DrivingResouces\trick\C\32_03_mixdown.wav" />
@@ -742,6 +744,7 @@
     <Content Include="DrivingResouces\trick\J\66.mp3" />
     <Content Include="DrivingResouces\trick\J\67.mp3" />
     <Content Include="DrivingResouces\trick\J\68.mp3" />
+    <Content Include="DrivingResouces\trick\J\69.mp3" />
     <Content Include="DrivingResouces\trick\J\69.wav" />
     <Content Include="DrivingResouces\trick\J\7.wav" />
     <Content Include="DrivingResouces\trick\J\70.wav" />
@@ -857,9 +860,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Exam\FourPuzzle.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Back\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Practice\OnePuzzle.cshtml" />

@@ -51,7 +51,7 @@
                 <p>用&nbsp;&nbsp;&nbsp;&nbsp; 户: <span class="user">@ViewBag.account</span></p>
                 <p>练习题数: <span class="user-num">@ViewBag.len</span></p>
                 <p>考试科目: <span class="user-category">科目4</span></p>
-                <p>考试时间: <span class="user-time"></span></p>
+                <p>考试时间: <span class="user-time" id="user-time"></span></p>
             </div>
         </fieldset>
     </div>
@@ -76,7 +76,7 @@
                             您的浏览器不支持 audio 标签。
                         </audio>
                         <!--<audio src="/Public/video/right.wav" id="turename" style="display: none;"></audio>-->
-                        <button class="layui-btn layui-btn-warm detailsbtn" data-hide="yes" id="playtrick"  style="font-size:20px"><i class="glyphicon glyphicon-star" style="font-size: 14px;"></i>&nbsp;小技巧</button>
+                        <button class="layui-btn layui-btn-warm detailsbtn" data-hide="yes" id="playtrick"  style="font-size:20px;display:none"><i class="glyphicon glyphicon-star" style="font-size: 14px;"></i>&nbsp;小技巧</button>
                         <button data-toggle="modal" data-target="#myModal" class="layui-btn layui-btn-warm layer-video" id="playvideo" style="display:none"><i class="glyphicon glyphicon-facetime-video" style="font-size: 20px;"></i> 播放视频</button>
                     </div>
                     <div style="float: right;margin-right: 5%" id="AnswerButton">
@@ -181,10 +181,26 @@
 <script>
     var lan;
     var nowTime = 0;
+    function ShowTime()
+    {
+        var minute = parseInt( (45 * 60 - nowTime) / 60 );
+        var sec = (45 * 60 - nowTime) % 60;
+        if (sec < 10) {
+            document.getElementById("user-time").innerHTML = minute + ":0" + sec;
+        }
+        else {
+            document.getElementById("user-time").innerHTML = minute + ":" + sec;
+        }
+        if (minute == 0 && sec == 0)
+        {
+            showYourScore();
+            window.location.reload();
+        }
+        setTimeout("nowTime++", 1000);
+        setTimeout("ShowTime()", 1000);
+    }
     function Ch_e4() {
         $(".user-category").text("科目四");
-        $("#next").text("下一题");
-        $("#upper").text("上一题");
         $("#next").text("下一题");
         $("#upper").text("上一题");
         if (type[0] == "C") {
@@ -202,8 +218,8 @@
     //上གོང་གི་དྲི་བ།下འོག་གི་དྲི་བ།
     function tibetan_e4() {
         $(".user-category").text("བཞི");
-        $(".layui-btn Next").text("འོག་གི་དྲི་བ།");
-        $(".layui-btn upper").text("གོང་གི་དྲི་བ།");
+        $("next").text("འོག་གི་དྲི་བ།");
+        $("upper").text("གོང་གི་དྲི་བ།");
         document.getElementById("question").innerHTML = "1、" + ti_contents[0];
         document.getElementById("answer-one").innerHTML = "A " + ti_As[0];
         document.getElementById("answer-two").innerHTML = "B " + ti_Bs[0];
@@ -224,6 +240,7 @@
     }
     $(document).ready(function () {
         setTimeout("nowTime++", 1000);
+        setTimeout("ShowTime()", 1000);
         $("#subject_img").attr("src", decodeURI(encodeURI(imgs[0]).replace("%E2%80%AA", "")));
         $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[0]).replace("%E2%80%AA", "")));
         $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[0]).replace("%E2%80%AA", "")));
@@ -500,7 +517,7 @@
     }
     function showYourScore()
     {
-        if (nowTime <= 30000) {
+        if (nowTime < 1800) {
             if (lan == "ch") {
                 alert("答卷30分钟方可交卷");
                 return;
