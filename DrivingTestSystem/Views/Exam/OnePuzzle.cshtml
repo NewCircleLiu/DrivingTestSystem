@@ -200,11 +200,17 @@
             document.getElementById("answer-four").innerHTML = "D " + Ds[0];
             $("#C").show();
             $("#D").show();
+            $("#A").text("A");
+            $("#B").text("B");
         } else {
+            document.getElementById("answer-one").innerHTML = "<br/>";
+            document.getElementById("answer-two").innerHTML = "<br/>";
             document.getElementById("answer-three").innerHTML = "<br/>";
             document.getElementById("answer-four").innerHTML = "<br/>";
             $("#C").hide();
             $("#D").hide();
+            $("#A").text("√");
+            $("#B").text("×");
         }
     }
     function tibetan_e1() {
@@ -219,11 +225,17 @@
             document.getElementById("answer-four").innerHTML = "D " + ti_Ds[0];
             $("#C").show();
             $("#D").show();
+            $("#A").text("A");
+            $("#B").text("B");
         } else {
+            document.getElementById("answer-one").innerHTML = "<br/>";
+            document.getElementById("answer-two").innerHTML = "<br/>";
             document.getElementById("answer-three").innerHTML = "<br/>";
             document.getElementById("answer-four").innerHTML = "<br/>";
             $("#C").hide();
             $("#D").hide();
+            $("#A").text("√");
+            $("#B").text("×");
         }
         /*
 一གཅིག
@@ -260,19 +272,23 @@
             }
         });
         $("#playcontent").click(function () {
-            var audio = document.getElementById("subject_sound_content");
-            if (audio.paused) {
-                audio.play();
+            var audio_c = document.getElementById("subject_sound_content");
+            var audio_t = document.getElementById("subject_sound_trick");
+            if (audio_c.paused) {
+                audio_c.play();
+                audio_t.pause();
             } else {
-                audio.pause();
+                audio_c.pause();
             }
         });
         $("#playtrick").click(function () {
-            var audio = document.getElementById("subject_sound_trick");
-            if (audio.paused) {
-                audio.play();
+            var audio_c = document.getElementById("subject_sound_content");
+            var audio_t = document.getElementById("subject_sound_trick");
+            if (audio_t.paused) {
+                audio_t.play();
+                audio_c.pause();
             } else {
-                audio.pause();
+                audio_t.pause();
             }
         });
         $("#playvideo").click(function () {
@@ -319,11 +335,17 @@
                 document.getElementById("answer-four").innerHTML = "D " + Ds[index];
                 $("#C").show();
                 $("#D").show();
+                $("#A").text("A");
+                $("#B").text("B");
             } else {
+                document.getElementById("answer-one").innerHTML = "<br/>";
+                document.getElementById("answer-two").innerHTML = "<br/>";
                 document.getElementById("answer-three").innerHTML = "<br/>";
                 document.getElementById("answer-four").innerHTML = "<br/>";
                 $("#C").hide();
                 $("#D").hide();
+                $("#A").text("√");
+                $("#B").text("×");
             }
         } else {
             document.getElementById("question").innerHTML = (index + 1).toString() + "、" + ti_contents[index];
@@ -334,11 +356,17 @@
                 document.getElementById("answer-four").innerHTML = "D " + ti_Ds[index];
                 $("#C").show();
                 $("#D").show();
+                $("#A").text("A");
+                $("#B").text("B");
             } else {
+                document.getElementById("answer-one").innerHTML = "<br/>";
+                document.getElementById("answer-two").innerHTML = "<br/>";
                 document.getElementById("answer-three").innerHTML = "<br/>";
                 document.getElementById("answer-four").innerHTML = "<br/>";
                 $("#C").hide();
                 $("#D").hide();
+                $("#A").text("√");
+                $("#B").text("×");
             }
         }
         document.getElementById("subject_index").innerHTML = index;
@@ -373,13 +401,19 @@
             if (type[nowIndex] == "C") {
                 $("#C").show();
                 $("#D").show();
+                $("#A").text("A");
+                $("#B").text("B");
                 document.getElementById("answer-three").innerHTML = "C " + Cs[nowIndex];
                 document.getElementById("answer-four").innerHTML = "D " + Ds[nowIndex];
             } else {
+                document.getElementById("answer-one").innerHTML = "<br/>";
+                document.getElementById("answer-two").innerHTML = "<br/>";
                 document.getElementById("answer-three").innerHTML = "<br/>";
                 document.getElementById("answer-four").innerHTML = "<br/>";
                 $("#C").hide();
                 $("#D").hide();
+                $("#A").text("√");
+                $("#B").text("×");
             }
         } else {
             document.getElementById("question").innerHTML = (nowIndex + 1).toString() + "、" + ti_contents[nowIndex];
@@ -388,11 +422,17 @@
             if (type[nowIndex] == "C") {
                 $("#C").show();
                 $("#D").show();
+                $("#A").text("A");
+                $("#B").text("B");
                 document.getElementById("answer-three").innerHTML = "C " + ti_Cs[nowIndex];
                 document.getElementById("answer-four").innerHTML = "D " + ti_Ds[nowIndex];
             } else {
                 $("#C").hide();
                 $("#D").hide();
+                $("#A").text("√");
+                $("#B").text("×");
+                document.getElementById("answer-one").innerHTML = "<br/>";
+                document.getElementById("answer-two").innerHTML = "<br/>";
                 document.getElementById("answer-three").innerHTML = "<br/>";
                 document.getElementById("answer-four").innerHTML = "<br/>";
             }
@@ -429,11 +469,17 @@
             if (type[nowIndex] == "C") {
                 $("#C").show();
                 $("#D").show();
+                $("#A").text("A");
+                $("#B").text("B");
                 document.getElementById("answer-three").innerHTML = "C " + Cs[nowIndex];
                 document.getElementById("answer-four").innerHTML = "D " + Ds[nowIndex];
             } else {
                 $("#C").hide();
                 $("#D").hide();
+                $("#A").text("√");
+                $("#B").text("×");
+                document.getElementById("answer-one").innerHTML = "<br/>";
+                document.getElementById("answer-two").innerHTML = "<br/>";
                 document.getElementById("answer-three").innerHTML = "<br/>";
                 document.getElementById("answer-four").innerHTML = "<br/>";
             }
@@ -444,11 +490,17 @@
             if (type[nowIndex] == "C") {
                 $("#C").show();
                 $("#D").show();
+                $("#A").text("A");
+                $("#B").text("B");
                 document.getElementById("answer-three").innerHTML = "C " + ti_Cs[nowIndex];
                 document.getElementById("answer-four").innerHTML = "D " + ti_Ds[nowIndex];
             } else {
                 $("#C").hide();
                 $("#D").hide();
+                $("#A").text("√");
+                $("#B").text("×");
+                document.getElementById("answer-one").innerHTML = "<br/>";
+                document.getElementById("answer-two").innerHTML = "<br/>";
                 document.getElementById("answer-three").innerHTML = "<br/>";
                 document.getElementById("answer-four").innerHTML = "<br/>";
             }

@@ -44,24 +44,32 @@
 
         <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=light">
-                <img src="~/Resources/img/灯光.png" class="cate-img">
-                <p id="light">信号灯</p>
+                <img src="~/Resources/img/交通信号.png" class="cate-img">
+                <p id="light">车灯的使用</p>
             </a>
         </div>
 
-        <div class="col-md-6 col-sm-4 text-center fh5co-feature feature-box">
+        <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=first">
                 <img src="~/Resources/img/道路标志.png" class="cate-img">
                 <p id="first">先行原则</p>
             </a>
         </div>
 
-        <div class="col-md-6 col-sm-4 text-center fh5co-feature feature-box">
+        <div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
             <a href="~/Practice/OnePuzzle?ctype=safe">
                 <img src="~/Resources/img/驾校.png" class="cate-img" style="padding-bottom: 36px">
                 <p id="safe">安全行驶</p>
             </a>
         </div>
+		
+		<div class="col-md-4 col-sm-4 text-center fh5co-feature feature-box">
+            <a href="~/Practice/OnePuzzle?ctype=signal">
+                <img src="~/Resources/img/灯光.png" class="cate-img" style="padding-bottom: 36px">
+                <p id="signal">交通信号灯</p>
+            </a>
+        </div>
+		
     </div>
 </div>
 
@@ -76,16 +84,18 @@
         $("#ground").text("ཐང་གི་རྟགས།");
         $("#movie").text("འགུལ་རི");
         $("#key").text("གནད་འགག་ཡི་གེ");
+        $("#signal").text("བརྡ་རྟགས་གློག་གིི་རིགས།");
     }
     function Ch_ps1() {
         $("#safe").text("安全行驶");
         $("#first").text("先行规则");
-        $("#light").text("信号灯");
+        $("#light").text("车灯的使用");
         $("#punish").text("罚款判刑类");
         $("#speed").text("速度类问题");
         $("#ground").text("地面标识");
         $("#movie").text("动画");
         $("#key").text("关键字");
+        $("#signal").text("交通信号灯");
     }
     $(document).ready(function () {
         $.ajax({
