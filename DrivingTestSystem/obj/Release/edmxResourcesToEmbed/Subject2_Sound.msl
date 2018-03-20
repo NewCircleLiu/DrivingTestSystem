@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Subject2_SoundModelStoreContainer" CdmEntityContainer="Subject2_SoundEntities">
+    <EntitySetMapping Name="EXAM_TK_YY_ADY">
+      <EntityTypeMapping TypeName="Subject2_SoundModel.EXAM_TK_YY_ADY">
+        <MappingFragment StoreEntitySet="EXAM_TK_YY_ADY">
+          <ScalarProperty Name="STXH" ColumnName="STXH" />
+          <ScalarProperty Name="YYNR" ColumnName="YYNR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

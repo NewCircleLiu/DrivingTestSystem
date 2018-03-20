@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Subject2Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Subject2Entities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="EXAM_TK" EntityType="Subject2Model.EXAM_TK" />
+  </EntityContainer>
+  <EntityType Name="EXAM_TK">
+    <Key>
+      <PropertyRef Name="STXH" />
+    </Key>
+    <Property Name="STXH" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="BH" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="TKLX" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="STLX" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="STSX" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="STTX" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="STFL" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="STNRH" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="STNRZ" Type="String" MaxLength="610" Unicode="true" FixedLength="false" />
+    <Property Name="XZDAAH" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="XZDABH" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="XZDACH" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="XZDADH" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="XZDAAZ" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="XZDABZ" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="XZDACZ" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="XZDADZ" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="STTP" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="STDA" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="SYCX" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="KSYY" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="PROV" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="STBJ" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+  </EntityType>
+</Schema>

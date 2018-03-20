@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Subject2ModelStoreContainer" CdmEntityContainer="Subject2Entities">
+    <EntitySetMapping Name="EXAM_TK">
+      <EntityTypeMapping TypeName="Subject2Model.EXAM_TK">
+        <MappingFragment StoreEntitySet="EXAM_TK">
+          <ScalarProperty Name="STXH" ColumnName="STXH" />
+          <ScalarProperty Name="BH" ColumnName="BH" />
+          <ScalarProperty Name="TKLX" ColumnName="TKLX" />
+          <ScalarProperty Name="STLX" ColumnName="STLX" />
+          <ScalarProperty Name="STSX" ColumnName="STSX" />
+          <ScalarProperty Name="STTX" ColumnName="STTX" />
+          <ScalarProperty Name="STFL" ColumnName="STFL" />
+          <ScalarProperty Name="STNRH" ColumnName="STNRH" />
+          <ScalarProperty Name="STNRZ" ColumnName="STNRZ" />
+          <ScalarProperty Name="XZDAAH" ColumnName="XZDAAH" />
+          <ScalarProperty Name="XZDABH" ColumnName="XZDABH" />
+          <ScalarProperty Name="XZDACH" ColumnName="XZDACH" />
+          <ScalarProperty Name="XZDADH" ColumnName="XZDADH" />
+          <ScalarProperty Name="XZDAAZ" ColumnName="XZDAAZ" />
+          <ScalarProperty Name="XZDABZ" ColumnName="XZDABZ" />
+          <ScalarProperty Name="XZDACZ" ColumnName="XZDACZ" />
+          <ScalarProperty Name="XZDADZ" ColumnName="XZDADZ" />
+          <ScalarProperty Name="STTP" ColumnName="STTP" />
+          <ScalarProperty Name="STDA" ColumnName="STDA" />
+          <ScalarProperty Name="SYCX" ColumnName="SYCX" />
+          <ScalarProperty Name="KSYY" ColumnName="KSYY" />
+          <ScalarProperty Name="PROV" ColumnName="PROV" />
+          <ScalarProperty Name="STBJ" ColumnName="STBJ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

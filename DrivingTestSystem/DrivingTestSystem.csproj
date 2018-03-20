@@ -44,6 +44,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -126,6 +128,15 @@
     <Compile Include="Controllers\PracticeController.cs" />
     <Compile Include="Controllers\UserLoginController.cs" />
     <Compile Include="Controllers\VerifyCodeController.cs" />
+    <Compile Include="EXAM_TK.cs">
+      <DependentUpon>Subject2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EXAM_TK_TP.cs">
+      <DependentUpon>Subject2_Pic.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EXAM_TK_YY_ADY.cs">
+      <DependentUpon>Subject2_Sound.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -134,6 +145,52 @@
     <Compile Include="Models\User\User.cs" />
     <Compile Include="Models\User\UserContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subject2.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Subject2.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subject2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Subject2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subject2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Subject2.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Subject2_Pic.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Subject2_Pic.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subject2_Pic.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Subject2_Pic.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subject2_Pic.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Subject2_Pic.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Subject2_Sound.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Subject2_Sound.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subject2_Sound.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Subject2_Sound.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subject2_Sound.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Subject2_Sound.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Subject2InfoController.cs" />
     <Compile Include="Utils\UserAuthorizeAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -794,6 +851,36 @@
     <Content Include="Resources\js\bootstrap-modal.js" />
     <Content Include="Resources\js\collapse.js" />
     <Content Include="Resources\js\video.min.js" />
+    <Content Include="Subject2.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Subject2.edmx</DependentUpon>
+      <LastGenOutput>Subject2.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Subject2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Subject2.edmx</DependentUpon>
+      <LastGenOutput>Subject2.cs</LastGenOutput>
+    </Content>
+    <Content Include="Subject2_Pic.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Subject2_Pic.edmx</DependentUpon>
+      <LastGenOutput>Subject2_Pic.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Subject2_Pic.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Subject2_Pic.edmx</DependentUpon>
+      <LastGenOutput>Subject2_Pic.cs</LastGenOutput>
+    </Content>
+    <Content Include="Subject2_Sound.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Subject2_Sound.edmx</DependentUpon>
+      <LastGenOutput>Subject2_Sound.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Subject2_Sound.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Subject2_Sound.edmx</DependentUpon>
+      <LastGenOutput>Subject2_Sound.cs</LastGenOutput>
+    </Content>
     <Content Include="UploadFiles\img\s4\4.jpg" />
     <Content Include="UploadFiles\img\s4\6.jpg" />
     <Content Include="UploadFiles\img\user\lxy.jpg" />
@@ -823,7 +910,9 @@
     <Content Include="Resources\js\respond.min.js" />
     <Content Include="Resources\js\userLogin.js" />
     <Content Include="UploadFiles\video\1.mp4" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -866,6 +955,42 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Exam\OnePuzzle.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Subject2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Subject2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Subject2.edmx.diagram">
+      <DependentUpon>Subject2.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Subject2_Pic.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Subject2_Pic.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Subject2_Pic.edmx.diagram">
+      <DependentUpon>Subject2_Pic.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Subject2_Sound.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Subject2_Sound.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Subject2_Sound.edmx.diagram">
+      <DependentUpon>Subject2_Sound.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

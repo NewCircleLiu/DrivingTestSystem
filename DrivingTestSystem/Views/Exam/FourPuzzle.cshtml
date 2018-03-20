@@ -40,17 +40,17 @@
 
 <section style="display:flex;margin-left: 0px;margin-right:0px;width:100%">
     <div class="left-main">
-        <fieldset class="layui-elem-field" style="margin-bottom:70px">
+        <fieldset class="layui-elem-field" style="margin-bottom:20px">
             <legend>科目四</legend>
             <div class="layui-field-box category">科目四</div>
         </fieldset>
         <fieldset class="layui-elem-field" style="min-height: 237px;text-align:center;">
             <legend>用户信息</legend>
             <div class="layui-field-box" style="min-height: 237px;">
-                <img src="~/Resources/img/user.jpg" class="user-img" style="margin-right:20px;margin-bottom:0;display:inline-block;box-sizing: border-box;left: 15%;">
-                <p>用&nbsp;&nbsp;&nbsp;&nbsp; 户: <span class="user">@ViewBag.account</span></p>
-                <p>练习题数: <span class="user-num">@ViewBag.len</span></p>
-                <p>考试科目: <span class="user-category">科目4</span></p>
+                <img src="~/Resources/img/user.jpg" class="user-img" style="margin-right:10px;margin-bottom:20px;display:inline-block;box-sizing: border-box;left: 25%;">
+                <p style="text-align:left">用户: <span class="user">@ViewBag.account</span></p>
+                <p style="text-align:left">练习题数: <span class="user-num">@ViewBag.len</span></p>
+                <p style="text-align:left">考试科目: <span class="user-category">四</span></p>
                 <p>考试时间: <span class="user-time" id="user-time"></span></p>
             </div>
         </fieldset>
@@ -59,15 +59,25 @@
         <fieldset class="layui-elem-field" style="min-height: 430px;position: relative;margin-left:10px;max-width:100%">
             <legend>考试题目</legend>
             <div class="layui-field-box" style="text-align:left">
-                <p class="question" id="question" style="font-weight:bold;font-size:18px">1、@Model[0].subject_content？</p>
+                <p class="question" id="question" style="font-weight:bold;font-size:18px">1、@Model[0].subject_content</p>
                 <p class="answer-one" id="answer-one" style="font-weight:bold;font-size:18px">A @Model[0].subject_A</p>
                 <p class="answer-two" id="answer-two" style="font-weight:bold;font-size:18px">B @Model[0].subject_B</p>
                 <p class="answer-there" id="answer-three" style="font-weight:bold;font-size:18px">C @Model[0].subject_C</p>
                 <p class="answer-four" id="answer-four" style="font-weight:bold;font-size:18px">D @Model[0].subject_D</p>
                 <p class="answer-judge" style="width: 50%; display: none; text-align:center" id="ShowJudge"></p>
-                <img src="@Model[0].subject_img" class="que-img pc-que-img" id="subject_img" style="margin:0;margin-right:20px;margin-bottom:40px">
                 <div style="position: absolute;bottom: 2%;width: 100%;margin-bottom:10px">
-                    <div style="float: left;" class="answer-test">
+                    <div style="float: left; font-size:large">
+                       <b>选择:</b>
+                    </div>
+                    <div style="float: left;margin-left: 5%" id="AnswerButton">
+                        <p id="subject_id" style="display:none">@Model[0].subject_id</p>
+                        <p id="subject_index" style="display:none">@ViewBag.nowIndex</p>
+                        <button class="layui-btn layui-btn-primary chooes" id="A" data-ov="none" onclick="checkAnswer('A');">A</button>
+                        <button class="layui-btn layui-btn-primary chooes" id="B" data-ov="none" onclick="checkAnswer('B');">B</button>
+                        <button class="layui-btn layui-btn-primary chooes" id="C" data-ov="none" onclick="checkAnswer('C');">C</button>
+                        <button class="layui-btn layui-btn-primary chooes" id="D" data-ov="none" onclick="checkAnswer('D');">D</button> 
+                    </div>
+                    <div style="float: right;margin-right: 5%" class="answer-test">
                         <button class="layui-btn layui-btn-normal play-audio" id="playcontent" style="font-size:20px"><i class="glyphicon glyphicon-volume-up" style="font-size: 14px;"></i>&nbsp;音频</button>
                         <audio src="" class="answer-audio" style="display: none;" id="subject_sound_trick">
                             您的浏览器不支持 audio 标签。
@@ -78,14 +88,6 @@
                         <!--<audio src="/Public/video/right.wav" id="turename" style="display: none;"></audio>-->
                         <button class="layui-btn layui-btn-warm detailsbtn" data-hide="yes" id="playtrick"  style="font-size:20px;display:none"><i class="glyphicon glyphicon-star" style="font-size: 14px;"></i>&nbsp;小技巧</button>
                         <button data-toggle="modal" data-target="#myModal" class="layui-btn layui-btn-warm layer-video" id="playvideo" style="display:none"><i class="glyphicon glyphicon-facetime-video" style="font-size: 20px;"></i> 播放视频</button>
-                    </div>
-                    <div style="float: right;margin-right: 5%" id="AnswerButton">
-                        <p id="subject_id" style="display:none">@Model[0].subject_id</p>
-                        <p id="subject_index" style="display:none">@ViewBag.nowIndex</p>
-                        <button class="layui-btn layui-btn-primary chooes" id="A" data-ov="none" onclick="checkAnswer('A');">A</button>
-                        <button class="layui-btn layui-btn-primary chooes" id="B" data-ov="none" onclick="checkAnswer('B');">B</button>
-                        <button class="layui-btn layui-btn-primary chooes" id="C" data-ov="none" onclick="checkAnswer('C');">C</button>
-                        <button class="layui-btn layui-btn-primary chooes" id="D" data-ov="none" onclick="checkAnswer('D');">D</button> 
                     </div>
                 </div>
             </div>
@@ -98,12 +100,10 @@
             </div>
         </div>
     </div>
-</section>
-<div class="main">
-    <fieldset class="layui-elem-field">
-        <legend>题目编号</legend>
-        <div class="layui-field-box">
-            <ul id="container">
+        <div class="right-main">
+        <fieldset class="layui-elem-field" style="min-height: 430px;position: relative;margin-left:10px;max-width:100%">
+            <legend>答题信息</legend>
+                        <ul id="container">
                 @for (int i = 0; i < ViewBag.len; i++)
                 {
                     <script>
@@ -158,6 +158,14 @@
                         <li id="new(@i)" class="newli newli-btn" onclick="ToANewPuzzle(@i)" style="cursor:pointer">@(i + 1)</li>
                 }
             </ul>
+        </fieldset>
+    </div>
+</section>
+<div class="main">
+    <fieldset class="layui-elem-field">
+        <legend>考题图片信息</legend>
+        <div class="layui-field-box" style="text-align:center">
+            <img src="" class="" id="subject_img" style="margin:0;margin-right:20px;margin-bottom:40px;max-height:300px;">
         </div>
     </fieldset>
 </div>
@@ -181,6 +189,22 @@
 <script>
     var lan;
     var nowTime = 0;
+    function getImg(xh) {
+        if (xh != "") {
+            $("#subject_img").attr("src", "/Subject2Info/getPic?xh=" + xh);
+        }
+        else {
+            $("#subject_img").attr("src", "");
+        }
+    }
+    function getSound(xh) {
+        if (xh != "") {
+            $("#subject_sound_content").attr("src", "/Subject2Info/getSound?xh=" + xh);
+        }
+        else {
+            $("#subject_sound_content").attr("src", "");
+        }
+    }
     function ShowTime()
     {
         var minute = parseInt( (45 * 60 - nowTime) / 60 );
@@ -200,9 +224,9 @@
         setTimeout("ShowTime()", 1000);
     }
     function Ch_e4() {
-        $(".user-category").text("科目四");
-        $("#next").text("下一题");
-        $("#upper").text("上一题");
+//        $(".user-category").text("四");
+//        $("#next").text("下一题");
+//        $("#upper").text("上一题");
         if (type[0] == "C") {
             document.getElementById("answer-three").innerHTML = "C " + Cs[0];
             document.getElementById("answer-four").innerHTML = "D " + Ds[0];
@@ -223,9 +247,9 @@
     }
     //上གོང་གི་དྲི་བ།下འོག་གི་དྲི་བ།
     function tibetan_e4() {
-        $(".user-category").text("བཞི");
-        $("next").text("འོག་གི་དྲི་བ།");
-        $("upper").text("གོང་གི་དྲི་བ།");
+//        $(".user-category").text("བཞི");
+//        $("next").text("འོག་གི་དྲི་བ།");
+//        $("upper").text("གོང་གི་དྲི་བ།");
         document.getElementById("question").innerHTML = "1、" + ti_contents[0];
         document.getElementById("answer-one").innerHTML = "A " + ti_As[0];
         document.getElementById("answer-two").innerHTML = "B " + ti_Bs[0];
@@ -253,11 +277,14 @@
     $(document).ready(function () {
         setTimeout("nowTime++", 1000);
         setTimeout("ShowTime()", 1000);
-        $("#subject_img").attr("src", decodeURI(encodeURI(imgs[0]).replace("%E2%80%AA", "")));
-        $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[0]).replace("%E2%80%AA", "")));
-        $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[0]).replace("%E2%80%AA", "")));
+        getImg(imgs[0]);
+        getSound(s_c[0]);
+        //$("#subject_img").attr("src", decodeURI(encodeURI(imgs[0]).replace("%E2%80%AA", "")));
+        //$("#subject_img").attr("src","data:image/png;base64,"+imgs[0]);
+        //$("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[0]).replace("%E2%80%AA", "")));
+        //$("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[0]).replace("%E2%80%AA", "")));
         if (video[0] != "") {
-            $("#subject_img").attr("src", decodeURI(encodeURI(video[0]).replace("%E2%80%AA", "")));
+            //$("#subject_img").attr("src", decodeURI(encodeURI(video[0]).replace("%E2%80%AA", "")));
         }
         $.ajax({
             type: "post",
@@ -375,9 +402,12 @@
         }
         document.getElementById("subject_index").innerHTML = index;
         document.getElementById("subject_id").innerHTML = ids[index];
-        $("#subject_img").attr("src", decodeURI(encodeURI(imgs[index]).replace("%E2%80%AA", "")));
-        $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[index]).replace("%E2%80%AA", "")));
-        $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[index]).replace("%E2%80%AA", "")));
+        getImg(imgs[index]);
+        getSound(s_c[index]);
+        //$("#subject_img").attr("src", "data:image/png;base64," + imgs[index]);
+        //$("#subject_img").attr("src", decodeURI(encodeURI(imgs[index]).replace("%E2%80%AA", "")));
+        //$("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[index]).replace("%E2%80%AA", "")));
+        //$("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[index]).replace("%E2%80%AA", "")));
         if (video[index] != "") {
             $("#subject_img").attr("src", decodeURI(encodeURI(video[index]).replace("%E2%80%AA", "")));
         }
@@ -444,9 +474,12 @@
         }
         document.getElementById("subject_index").innerHTML = nowIndex;
         document.getElementById("subject_id").innerHTML = ids[nowIndex];
-        $("#subject_img").attr("src", decodeURI(encodeURI(imgs[nowIndex]).replace("%E2%80%AA", "")));
-        $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[nowIndex]).replace("%E2%80%AA", "")));
-        $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[nowIndex]).replace("%E2%80%AA", "")));
+        getImg(imgs[nowIndex]);
+        getSound(s_c[nowIndex]);
+        //$("#subject_img").attr("src", "data:image/png;base64," + imgs[nowIndex]);
+        //$("#subject_img").attr("src", decodeURI(encodeURI(imgs[nowIndex]).replace("%E2%80%AA", "")));
+        //$("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[nowIndex]).replace("%E2%80%AA", "")));
+        //$("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[nowIndex]).replace("%E2%80%AA", "")));
         if (video[nowIndex] != "") {
             $("#subject_img").attr("src", decodeURI(encodeURI(video[nowIndex]).replace("%E2%80%AA", "")));
         }
@@ -512,9 +545,12 @@
         }
         document.getElementById("subject_index").innerHTML = nowIndex;
         document.getElementById("subject_id").innerHTML = ids[nowIndex];
-        $("#subject_img").attr("src", decodeURI(encodeURI(imgs[nowIndex]).replace("%E2%80%AA", "")));
-        $("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[nowIndex]).replace("%E2%80%AA", "")));
-        $("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[nowIndex]).replace("%E2%80%AA", "")));
+        getImg(imgs[nowIndex]);
+        getSound(s_c[nowIndex]);
+        //$("#subject_img").attr("src", "data:image/png;base64," + imgs[nowIndex]);
+        //$("#subject_img").attr("src", decodeURI(encodeURI(imgs[nowIndex]).replace("%E2%80%AA", "")));
+        //$("#subject_sound_trick").attr("src", decodeURI(encodeURI(s_t[nowIndex]).replace("%E2%80%AA", "")));
+        //$("#subject_sound_content").attr("src", decodeURI(encodeURI(s_c[nowIndex]).replace("%E2%80%AA", "")));
         if (video[nowIndex] != "") {
             $("#subject_img").attr("src", decodeURI(encodeURI(video[nowIndex]).replace("%E2%80%AA", "")));
         }
@@ -535,7 +571,7 @@
         $.ajax({
             type: "post",
             async: false,
-            url: "@Url.Content("~/Practice/CheckAnswer/")",
+            url: "@Url.Content("~/Exam/CheckAnswer/")",
             data: { "user_answer": user_answer, "subject_id": id },
             dataType: "json",
             success: function (data) {

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Subject2_PicModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Subject2_PicModelStoreContainer">
+    <EntitySet Name="EXAM_TK_TP" EntityType="Subject2_PicModel.Store.EXAM_TK_TP" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="EXAM_TK_TP">
+    <Key>
+      <PropertyRef Name="STXH" />
+    </Key>
+    <Property Name="STXH" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="TPNR" Type="text" />
+  </EntityType>
+</Schema>

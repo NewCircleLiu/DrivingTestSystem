@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Subject2_PicModelStoreContainer" CdmEntityContainer="Subject2_PicEntities1">
+    <EntitySetMapping Name="EXAM_TK_TP">
+      <EntityTypeMapping TypeName="Subject2_PicModel.EXAM_TK_TP">
+        <MappingFragment StoreEntitySet="EXAM_TK_TP">
+          <ScalarProperty Name="STXH" ColumnName="STXH" />
+          <ScalarProperty Name="TPNR" ColumnName="TPNR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
